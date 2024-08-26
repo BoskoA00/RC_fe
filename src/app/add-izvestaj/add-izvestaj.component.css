@@ -1,0 +1,64 @@
+.addIzvestaj-main {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  background-color: #96b6c5;
+}
+.addIzvestaj-1 {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 50px;
+}
+.addIzvestaj-forma {
+  width: 50%;
+  height: 100%;
+}
+.form-input {
+  margin-bottom: 20px;
+}
+.form-textarea {
+  resize: none;
+  height: 150px;
+  font-size: 18px;
+  font-weight: 400;
+}
+.btn {
+  border: 1px solid white;
+  background-color: #adc4ce;
+}
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+@media screen and (max-width: 768px) {
+  .addIzvestaj-main {
+    margin-top: 30px;
+    padding: 20px;
+  }
+
+  .addIzvestaj-1 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .addIzvestaj-forma {
+    width: 100%;
+  }
+
+  .form-textarea {
+    height: 120px;
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 1rem;
+  }
+}

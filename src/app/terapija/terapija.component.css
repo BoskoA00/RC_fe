@@ -1,0 +1,96 @@
+.terapija-main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.terapija-1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 50px;
+  background-color: #96b6c5;
+}
+
+.terapija-sadrzaj {
+  width: 80%;
+  text-align: justify;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.terapija-sadrzaj h6 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.terapija-sesije {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 1.5rem;
+  width: 80%;
+  min-height: 400px;
+  max-height: 700px;
+  overflow: auto;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.terapija-sesije table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.terapija-sesije thead th {
+  font-size: 18px;
+  border-bottom: 2px solid black;
+  padding: 1rem;
+  background-color: transparent;
+}
+
+.terapija-sesije tbody td {
+  font-size: 20px;
+  border-top: 1px solid black;
+  padding: 1rem;
+  background-color: transparent;
+}
+
+.terapija-sesije tbody tr:hover {
+  cursor: default;
+}
+
+.terapija-sesije tbody a {
+  text-decoration: none;
+  color: black;
+}
+
+.terapija-sesije tbody a:hover {
+  color: #adc4ce;
+}
+
+.btn {
+  border: 1px solid white;
+  background-color: #adc4ce;
+}
+
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+
+.btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.btn a:hover {
+  color: #adc4ce;
+  background-color: white;
+}

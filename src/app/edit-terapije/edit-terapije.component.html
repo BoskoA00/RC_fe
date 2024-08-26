@@ -1,0 +1,152 @@
+<div class="ediTerapije-main">
+  <div class="ediTerapije-1">
+    <form class="ediTerapije-forma">
+      <div class="form-group">
+        <label for="sifra">Sifra terapije</label>
+        <input
+          type="text"
+          class="form-control"
+          name="sifra"
+          id="sifra"
+          aria-describedby="helpId"
+          [(ngModel)]="terapijaSifra"
+          disabled
+        />
+      </div>
+      <div class="form-group form-input">
+        <label for="pacijent">Pacijent</label>
+        <input
+          type="text"
+          class="form-control"
+          name="pacijent"
+          id="pacijent"
+          aria-describedby="helpId"
+          [(ngModel)]="pacijent"
+          disabled
+        />
+      </div>
+      <div class="form-group form-input">
+        <label for="sadrzaj">Sadrzaj terapije:</label>
+        <textarea
+          class="form-control form-textarea"
+          name="sadrzaj"
+          id="sadrzaj"
+          rows="3"
+          [(ngModel)]="terapijaSadrzaj"
+          required
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="datumPocetka">Datum pocetka</label>
+        <input
+          type="text"
+          class="form-control"
+          name="datumPocetka"
+          id="datumPocetka"
+          aria-describedby="helpId"
+          [(ngModel)]="terapijaDatumPocetka"
+          (input)="inputDatumPocetka()"
+        />
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="datumPocetkaCheck"
+          >Neispravan datum</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="datumKraja">Datum kraja</label>
+        <input
+          type="text"
+          class="form-control"
+          name="datumKraja"
+          id="datumKraja"
+          aria-describedby="helpId"
+          [(ngModel)]="terapijaDatumKraja"
+          (input)="inputDatumKraja()"
+        />
+        <small id="helpId" class="form-text text-muted" *ngIf="datumKrajaCheck"
+          >Neispravan datum</small
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="updateTerapija()">
+        Unesi izmene
+      </button>
+      <button type="button" class="btn btn-delete" (click)="deleteTerapija()">
+        Izbrisi terapiju
+      </button>
+    </form>
+  </div>
+  <div class="sesije-main">
+    <div class="sesije-div">
+      <table>
+        <thead>
+          <tr>
+            <th>Termin</th>
+            <th>Soba</th>
+            <th *ngIf="role == 2 || role == 1">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sesija of sesije">
+            <td>{{ sesija.termin }}</td>
+            <td>{{ sesija.soba.brojSobe }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="deleteSesija(sesija.id)">
+                Izbrisi sesiju
+              </button>
+            </td>
+          </tr>
+          <tr *ngFor="let sesija of noveSesije" class="input-row">
+            <td>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="noveSesije[sesija.id].termin"
+                (input)="checkTermin(sesija.id)"
+              />
+              <small
+                id="helpId"
+                class="form-text text-muted"
+                *ngIf="sesija.terminNeispravan"
+              >
+                Neispravan termin
+              </small>
+            </td>
+            <td>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="noveSesije[sesija.id].brojSobe"
+                list="sobe"
+                (input)="checkSoba(sesija.id)"
+              />
+              <small
+                id="helpId"
+                class="form-text text-muted"
+                *ngIf="sesija.sobaNePostoji"
+                >Soba ne postoji</small
+              >
+              <datalist id="sobe">
+                <option *ngFor="let item of sobe">{{ item.brojSobe }}</option>
+              </datalist>
+            </td>
+            <td>
+              <button
+                class="btn btn-primary"
+                (click)="removeNewSesija(sesija.id)"
+              >
+                Izbrisi sesiju
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button class="btn btn-primary" (click)="dodajSesiju()">
+        Dodaj sesiju
+      </button>
+    </div>
+  </div>
+</div>

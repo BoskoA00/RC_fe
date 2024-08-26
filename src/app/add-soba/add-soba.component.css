@@ -1,0 +1,29 @@
+.addSoba-main {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #96b6c5;
+}
+.addSoba-1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 50px;
+}
+.addSoba-form {
+  width: 50%;
+  height: 50%;
+}
+.btn {
+  border: 1px solid white;
+  background-color: #adc4ce;
+  margin: 20px;
+}
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}

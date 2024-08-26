@@ -1,0 +1,36 @@
+<div class="izvestaj-main">
+  <div class="izvestaj-data">
+    <div class="izvestaj-doktor">
+      <h4 *ngIf="role == 0">
+        Izvestaj je napisao doktor {{ izvestaj.doktor.firstName }}
+        {{ izvestaj.doktor.lastName }} datuma
+        {{ izvestaj.vremeStvaranja }} godine.
+      </h4>
+      <h4 *ngIf="role == 1">
+        Izvestaj je vezan za pacijenta {{ izvestaj.pacijent.firstName }}
+        {{ izvestaj.pacijent.lastName }} datuma
+        {{ izvestaj.vremeStvaranja }} godine.
+      </h4>
+      <h4 *ngIf="role == 2">
+        Izvestaj je vezan za pacijenta {{ izvestaj.pacijent.firstName }}
+        {{ izvestaj.pacijent.lastName }} datuma {{ izvestaj.vremeStvaranja }}.
+        godine. Napisan od strane {{ izvestaj.doktor.firstName }}
+        {{ izvestaj.doktor.lastName }}
+      </h4>
+    </div>
+    <div class="izvestaj-sadrzaj">
+      <h6>
+        {{ izvestaj.sadrzaj }}
+      </h6>
+    </div>
+    <div>
+      <button *ngIf="role == 1 || role == 2" class="btn btn-primay">
+        <a
+          [routerLink]="['/editIzvestaji/', izvestajId]"
+          routerLinkActive="router-link-active"
+          >Izmenite izvestaj</a
+        >
+      </button>
+    </div>
+  </div>
+</div>

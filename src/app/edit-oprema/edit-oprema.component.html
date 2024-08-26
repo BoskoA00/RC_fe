@@ -1,0 +1,68 @@
+<div class="editOprema-main">
+  <div class="editOprema-1">
+    <form class="editOprema-forma">
+      <div class="form-group">
+        <label for="sifra">Sifra opreme</label>
+        <input
+          type="text"
+          class="form-control"
+          name="sifra"
+          id="sifra"
+          aria-describedby="helpId"
+          placeholder="Unesite sifru opreme koju zelite da menjate"
+          [(ngModel)]="opremaSifra"
+          (input)="checkSifra()"
+        />
+        <small id="helpId" class="form-text text-muted" *ngIf="sifraCheck"
+          >Sifra je nedostupna</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="naziv">Naziv opreme</label>
+        <input
+          type="text"
+          class="form-control"
+          name="naziv"
+          id="naziv"
+          aria-describedby="helpId"
+          placeholder="Unesite naziv opreme koju zelite da menjate"
+          [(ngModel)]="opremaNaziv"
+        />
+      </div>
+      <div class="form-group">
+        <label for="brSobe">Soba:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="brSobe"
+          id="brSobe"
+          aria-describedby="helpId"
+          [(ngModel)]="brojSobe"
+          (input)="updateSoba()"
+        />
+        <small id="helpId" class="form-text text-muted" *ngIf="sobaCheck"
+          >Soba je nedostupna</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="datumOdrzavanja">Datum poslednjeg odrzavanja:</label>
+        <input
+          type="date"
+          class="form-control"
+          name="datumOdrzavanja"
+          id="datumOdrzavanja"
+          aria-describedby="helpId"
+          [(ngModel)]="datumPO"
+          (input)="updateDate()"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="updateOprema()">
+        Unesi izmene
+      </button>
+      <button type="button" class="btn btn-delete" (click)="deleteOprema()">
+        Izbrisi opremu
+      </button>
+    </form>
+  </div>
+</div>

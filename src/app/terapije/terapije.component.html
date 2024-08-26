@@ -1,0 +1,117 @@
+<div class="terapije-main d-flex flex-row justify-content-center">
+  <div class="terapije-1 d-flex flex-column justify-content-start">
+    <div class="terapije-1-1">
+      <div class="terapije-title">
+        <h3>Terapije korisnika:</h3>
+        <input
+          type="text"
+          placeholder="Pretrazite sa sifrom"
+          [(ngModel)]="searchTerm"
+          (input)="changeSearch()"
+        />
+      </div>
+      <button *ngIf="role == 1 || role == 2" class="btn btn-primary">
+        <a [routerLink]="['/addTerapije']" routerLinkActive="router-link-active"
+          >Napravi novu terapiju</a
+        >
+      </button>
+    </div>
+    <div class="terapije-table">
+      <table>
+        <thead>
+          <tr class="terapije-table-headers">
+            <th>Sifra</th>
+            <th *ngIf="role == 0">Doktor</th>
+            <th *ngIf="role == 1">Pacijent</th>
+            <th *ngIf="role == 2">Doktor</th>
+            <th *ngIf="role == 2">Pacijent</th>
+            <th>Datum pocetka</th>
+            <th>Datum kraja</th>
+            <th>Broj sesija</th>
+            <th *ngIf="role == 2 || role == 1">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let terapija of searching ? filteredTerapije : terapije"
+            class="terapije-table-row"
+          >
+            <td>
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ terapija.sifra }}
+              </a>
+            </td>
+            <td *ngIf="role == 0">
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ terapija.doktor.firstName }} {{ terapija.doktor.lastName }}
+              </a>
+            </td>
+            <td *ngIf="role == 1">
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ terapija.pacijent.firstName }}
+                {{ terapija.pacijent.lastName }}
+              </a>
+            </td>
+            <td *ngIf="role == 2">
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ terapija.doktor.firstName }} {{ terapija.doktor.lastName }}
+              </a>
+            </td>
+            <td *ngIf="role == 2">
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ terapija.pacijent.firstName }}
+                {{ terapija.pacijent.lastName }}
+              </a>
+            </td>
+            <td>
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ terapija.datumPocetka }}
+              </a>
+            </td>
+
+            <td>
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+                >{{ terapija.datumKraja }}</a
+              >
+            </td>
+            <td>
+              <a
+                [routerLink]="['/terapija/', terapija.id]"
+                routerLinkActive="router-link-active"
+                >{{ terapija.brojSesija }}</a
+              >
+            </td>
+            <td *ngIf="role == 2 || role == 1">
+              <button
+                class="btn btn-danger"
+                (click)="deleteTerapija(terapija.id)"
+              >
+                Izbrisi terapiju
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

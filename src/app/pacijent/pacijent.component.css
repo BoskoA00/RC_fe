@@ -1,0 +1,25 @@
+.pacijent-main {
+  width: 100%;
+  background-color: #96b6c5;
+  margin-top: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.pacijent-data {
+  width: 60%;
+}
+.pacijent-img {
+  width: 200px;
+  height: 200px;
+}
+.pacijent-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  padding-left: 20px;
+}

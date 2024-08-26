@@ -1,0 +1,70 @@
+<div class="pacijenti-main d-flex flex-row justify-content-center">
+  <div class="pacijenti-1 d-flex flex-column justify-content-start">
+    <div class="pacijenti-1-1">
+      <div class="pacijenti-title">
+        <h3 *ngIf="role == 1">Pacijenti korisnika:</h3>
+        <h3 *ngIf="role == 2">Pacijenti :</h3>
+        <input
+          type="text"
+          placeholder="Pretrazite pacijente"
+          [(ngModel)]="searchTerm"
+          (input)="changeSearch()"
+        />
+      </div>
+    </div>
+    <div class="pacijenti-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ime i Prezime</th>
+            <th>Datum rodjenja</th>
+            <th>Kontakt informacija</th>
+            <th>Korisnicko ime</th>
+            <th *ngIf="role == 2 || role == 1">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let k of searching ? filteredKorisnici : korisnici">
+            <td>
+              <a
+                [routerLink]="['/drugiProfil/', k.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ k.firstName }} {{ k.lastName }}
+              </a>
+            </td>
+            <td>
+              <a
+                [routerLink]="['/drugiProfil/', k.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ k.datumRodjenja }}
+              </a>
+            </td>
+            <td>
+              <a
+                [routerLink]="['/drugiProfil/', k.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ k.kontakt }}
+              </a>
+            </td>
+            <td>
+              <a
+                [routerLink]="['/drugiProfil/', k.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ k.userName }}
+              </a>
+            </td>
+            <td *ngIf="role == 1 || role == 2">
+              <button class="btn btn-primary" (click)="deletePacijenta(k.id)">
+                Izbrisi
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

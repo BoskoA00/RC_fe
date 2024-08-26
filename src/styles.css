@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("~bootstrap/dist/css/bootstrap.css");
+@font-face {
+  font-family: "Helvetica W01 Light";
+  src: url("/src/assets/Helvetica\ W01\ Light.ttf") format("truetype");
+  font-weight: lighter;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Helvetica W01 Light", Arial, sans-serif;
+}

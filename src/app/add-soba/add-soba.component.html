@@ -1,0 +1,34 @@
+<div class="addSoba-main">
+  <div class="addSoba-1">
+    <form class="addSoba-form" [formGroup]="formaSobe">
+      <div class="form-group">
+        <label for="naziv">Broj sobe</label>
+        <input
+          type="text"
+          class="form-control"
+          name="naziv"
+          id="naziv"
+          aria-describedby="helpId"
+          (input)="proveraSobe()"
+          [(ngModel)]="brojSobe"
+          formControlName="brojSobe"
+        />
+        <small id="helpId" class="form-text text-muted" *ngIf="proveraBroja"
+          >Soba je zauzeta</small
+        >
+
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="
+            BrojSobe.touched && BrojSobe.invalid && BrojSobe.errors?.required
+          "
+          >Broj sobe je obavezan</small
+        >
+      </div>
+      <button type="button" (click)="addSoba()" class="btn btn-primary">
+        Dodaj sobu
+      </button>
+    </form>
+  </div>
+</div>

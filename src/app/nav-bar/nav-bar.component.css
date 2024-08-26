@@ -1,0 +1,103 @@
+.nav-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100px;
+  align-items: flex-end;
+  border-bottom: 1px solid rgb(199, 199, 199);
+  background-color: #96b6c5;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.logo-container {
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo-container a {
+  text-decoration: none;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100px;
+}
+
+.logoText h2 {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+}
+
+.logo-img {
+  width: 80px;
+  height: 80px;
+}
+
+.nav-ul {
+  display: flex;
+  align-items: flex-end;
+}
+
+.nav-item-a {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-item-a-1 {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-main {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: auto;
+  }
+
+  .logo-container {
+    display: none;
+  }
+
+  .nav-ul {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .nav-ul ul {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .nav-ul li {
+    width: auto;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .nav-item-a {
+    font-size: 1.2rem;
+  }
+
+  .nav-item-a-1 {
+    font-size: 0.9rem;
+  }
+
+  .logoText h2 {
+    font-size: 1.2rem;
+  }
+}

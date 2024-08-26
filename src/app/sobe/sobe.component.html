@@ -1,0 +1,72 @@
+<div class="sobe-main">
+  <div class="sobe-1">
+    <div class="sobe-1-1">
+      <div class="sobe-title">
+        <h2>Sobe:</h2>
+        <input
+          type="text"
+          placeholder="Pretrazite broj sobe"
+          [(ngModel)]="searchTerm"
+          (input)="changeSearch()"
+        />
+      </div>
+      <a
+        *ngIf="role == 2"
+        [routerLink]="['/addSoba']"
+        routerLinkActive="router-link-active"
+      >
+        <button class="btn btn-primary">Dodaj sobu</button>
+      </a>
+    </div>
+    <div class="sobe-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Broj sobe</th>
+            <th>Sifra opreme</th>
+            <th>Status sobe</th>
+            <th *ngIf="role == 2 || role == 1">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let soba of searching ? filteredSobe : sobe">
+            <td>{{ soba.brojSobe }}</td>
+            <td *ngIf="soba.oprema">{{ soba.oprema.sifra }}</td>
+            <td *ngIf="!soba.oprema">/</td>
+            <td>{{ soba.status | statusSobe }}</td>
+            <td *ngIf="role == 2 || role == 1" class="sobe-options">
+              <button
+                *ngIf="soba.status == 0 && role == 2"
+                class="btn btn-delete"
+                (click)="deleteSoba(soba.id)"
+              >
+                Izbrisi
+              </button>
+              <button
+                *ngIf="soba.status == 0"
+                class="btn btn-delete"
+                (click)="reserveRoom(soba.brojSobe)"
+              >
+                Rezervisi
+              </button>
+              <button
+                *ngIf="soba.status == 1 && role == 2"
+                class="btn btn-delete"
+                (click)="disableRoom(soba.brojSobe)"
+              >
+                Nedostupno
+              </button>
+              <button
+                *ngIf="soba.status != 0"
+                class="btn btn-delete"
+                (click)="freeRoom(soba.brojSobe)"
+              >
+                Oslobodi
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

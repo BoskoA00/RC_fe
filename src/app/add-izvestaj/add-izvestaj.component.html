@@ -1,0 +1,63 @@
+<div class="addIzvestaj-main">
+  <div class="addIzvestaj-1">
+    <form class="addIzvestaj-forma" [formGroup]="formaIzvestaj">
+      <div class="form-group">
+        <label for="sifra">Sifra izvestaja</label>
+        <input
+          type="text"
+          class="form-control"
+          name="sifra"
+          id="sifra"
+          aria-describedby="helpId"
+          placeholder="Unesite sifru izvestaja..."
+          [(ngModel)]="sifra"
+          formControlName="sifra"
+          (input)="proveraSifre()"
+        />
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="Sifra.invalid && Sifra.touched && Sifra.errors?.required"
+          >Sifra je obavezna</small
+        >
+        <small id="helpId" class="form-text text-muted" *ngIf="sifraZauzeta"
+          >Sifra je zauzeta</small
+        >
+      </div>
+      <div class="form-group form-input">
+        <label for="pacijent">Odaberite pacijenta</label>
+        <input
+          formControlName="idPacijenta"
+          class="form-control"
+          name="pacijent"
+          id="pacijent"
+          required
+          list="pacijenti"
+          [(ngModel)]="imePacijenta"
+          (change)="selekcijaPacijenta()"
+        />
+        <datalist class="dataList" id="pacijenti">
+          <option *ngFor="let pacijent of pacijenti">
+            {{ pacijent.id }}-{{ pacijent.firstName }}
+            {{ pacijent.lastName }}
+          </option>
+        </datalist>
+      </div>
+      <div class="form-group form-input">
+        <label for="sadrzaj">Sadrzaj izvestaja:</label>
+        <textarea
+          class="form-control form-textarea"
+          name="sadrzaj"
+          id="sadrzaj"
+          rows="3"
+          required
+          [(ngModel)]="sadrzaj"
+          formControlName="sadrzaj"
+        ></textarea>
+      </div>
+      <button type="button" (click)="addIzvestaj()" class="btn btn-primary">
+        Unesi izvestaj
+      </button>
+    </form>
+  </div>
+</div>

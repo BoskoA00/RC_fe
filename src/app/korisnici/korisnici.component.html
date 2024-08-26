@@ -1,0 +1,74 @@
+<div class="korisnici-main">
+  <div class="korisnici-1">
+    <div class="korisnici-1-1">
+      <div class="korisnici-title">
+        <h2>Korisnici:</h2>
+        <input
+          type="text"
+          placeholder="Pretrazite korisnike"
+          (input)="changeSearch()"
+          [(ngModel)]="searchTerm"
+        />
+      </div>
+    </div>
+    <div class="korisnici-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Ime i Prezime</th>
+            <th>Username</th>
+            <th>Kontakt</th>
+            <th>Uloga</th>
+            <th *ngIf="role == 2">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let korisnik of searching ? filteredKorisnici : korisnici"
+          >
+            <td>
+              <a
+                [routerLink]="['/drugiProfil/', korisnik.id]"
+                routerLinkActive="router-link-active"
+                >{{ korisnik.firstName }} {{ korisnik.lastName }}</a
+              >
+            </td>
+            <td>{{ korisnik.userName }}</td>
+            <td>{{ korisnik.kontakt }}</td>
+            <td>{{ korisnik.role | role }}</td>
+            <td *ngIf="role == 2" class="korisnici-options">
+              <button
+                class="btn btn-primary"
+                *ngIf="korisnik.role == 0"
+                (click)="deleteUser(korisnik.id)"
+              >
+                Delete user
+              </button>
+              <button
+                class="btn btn-primary"
+                *ngIf="korisnik.role == 2 || korisnik.role == 1"
+                (click)="demoteUser(korisnik.id)"
+              >
+                Unazadi korisnika
+              </button>
+              <button
+                class="btn btn-primary"
+                *ngIf="korisnik.role == 0"
+                (click)="promoteUser(korisnik.id)"
+              >
+                Unapredi korisnika
+              </button>
+              <button
+                class="btn btn-primary"
+                *ngIf="korisnik.role == 1"
+                (click)="promoteUser(korisnik.id)"
+              >
+                Unapredi korisnika
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

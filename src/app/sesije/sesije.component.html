@@ -1,0 +1,49 @@
+<div class="sesije-main">
+  <div class="sesije-1">
+    <div class="sesije-text">
+      <div class="sesije-title">
+        <h3>Sesije korisnika:</h3>
+        <input
+          type="text"
+          placeholder="Pretrazite po terapiji"
+          [(ngModel)]="searchTerm"
+          (input)="changeSearch()"
+        />
+      </div>
+    </div>
+    <div class="sesije-data">
+      <table class="table">
+        <thead>
+          <tr class="sesije-data-headers">
+            <th>Terapija</th>
+            <th>Datum</th>
+            <th>Vreme</th>
+            <th *ngIf="role == 1 || role == 2">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="sesije-data-data"
+            *ngFor="let item of search ? filteredSesije : sesije"
+          >
+            <td>
+              <a
+                [routerLink]="['/terapija/', item.terapija.id]"
+                routerLinkActive="router-link-active"
+              >
+                {{ item.terapija.sifra }}
+              </a>
+            </td>
+            <td>{{ item.termin | datum : 0 }}</td>
+            <td>{{ item.termin | datum : 1 }}</td>
+            <td *ngIf="role == 1 || role == 2">
+              <button class="btn btn-primary" (click)="deleteSesija(item.id)">
+                Izbrisi sesiju
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

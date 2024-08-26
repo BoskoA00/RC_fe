@@ -1,0 +1,149 @@
+.terapije-main {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.terapije-1 {
+  width: 100%;
+  padding: 50px;
+  background-color: #96b6c5;
+  align-items: center;
+  height: 35rem;
+}
+.terapije-1-1 {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  margin-bottom: 25px;
+  justify-content: space-between;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+.terapije-title {
+  display: flex;
+}
+.terapije-title input {
+  width: 200px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.terapije-1-1 a {
+  text-decoration: none;
+  color: white;
+}
+
+.terapije-1-1 a:hover {
+  color: #adc4ce;
+}
+.terapije-table {
+  overflow-y: auto;
+  max-height: 700px;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.terapije-table table {
+  width: 100%;
+}
+.terapije-table-headers {
+  align-items: center;
+  background-color: #adc4ce;
+  height: 50px;
+}
+.terapije-table-headers th {
+  text-align: center;
+  flex-direction: row;
+}
+.terapije-table-headers h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.terapije-table-data {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.terapije-table-row {
+  text-align: center;
+
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.terapije-table-row td {
+  text-align: center;
+  padding: 10px 20px;
+  text-wrap: wrap;
+  align-items: center;
+}
+
+.terapije-table-row h5 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.terapije-table-row a {
+  text-decoration: none;
+  color: black;
+}
+
+.terapije-table-row:last-child {
+  border-bottom: none;
+}
+
+.btn {
+  border: 1px solid white;
+  background-color: #adc4ce;
+}
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+@media screen and (max-width: 768px) {
+  .terapije-1 {
+    padding: 20px;
+    height: auto;
+  }
+
+  .terapije-1-1 {
+    width: 100%;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .terapije-title {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .terapije-title input {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .terapije-table {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .terapije-table th,
+  .terapije-table td {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 100%;
+    height: 50px;
+    font-size: 0.8rem;
+  }
+}

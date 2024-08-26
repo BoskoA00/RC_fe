@@ -1,0 +1,171 @@
+.oprema-main {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.oprema-1 {
+  width: 100%;
+  padding: 50px;
+  background-color: #96b6c5;
+  align-items: center;
+  min-height: 35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.oprema-1-1 {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.oprema-title {
+  display: flex;
+  flex-direction: row;
+}
+.oprema-title input {
+  width: 200px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+.oprema-table {
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 700px;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+.oprema-table table {
+  width: 100%;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table thead th {
+  font-size: 18px;
+  border-bottom: 2px solid black;
+  padding: 1rem;
+  background-color: transparent;
+  text-align: center;
+  text-wrap: wrap;
+}
+
+.table tbody td {
+  font-size: 20px;
+  border-top: 1px solid black;
+  padding: 1rem;
+  background-color: transparent;
+}
+
+.table tbody tr:hover {
+  color: #adc4ce;
+}
+
+.table tbody a {
+  text-decoration: none;
+  color: black;
+}
+
+.table tbody a:hover {
+  color: #adc4ce;
+}
+
+.btn {
+  border: 1px solid white;
+  background-color: #adc4ce;
+  margin: 0px 10px;
+}
+
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+
+.oprema-main a {
+  text-decoration: none;
+  color: white;
+}
+
+.oprema-1 a:hover {
+  color: #adc4ce;
+}
+@media screen and (max-width: 768px) {
+  .oprema-main {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .oprema-1 {
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .oprema-1-1 {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .oprema-title {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .oprema-title input {
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+  }
+
+  .oprema-table {
+    min-width: 300px;
+    padding: 1rem;
+    min-height: auto;
+    max-height: 500px;
+    overflow: auto;
+    font-size: 0.8rem;
+  }
+  .table {
+    min-width: 300px;
+  }
+  .table thead th {
+    font-size: 16px;
+    padding: 0.75rem;
+  }
+
+  .table tbody td {
+    font-size: 14px;
+    padding: 0.75rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 10px;
+    width: 100px;
+  }
+  .oprema-options {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .oprema-1 a {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,50 @@
+.izvestaj-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.izvestaj-data {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  background-color: #96b6c5;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  padding: 50px;
+  height: 400px;
+}
+.izvestaj-doktor h4 {
+  font-size: 22px;
+  font-weight: 700;
+}
+.izvestaj-sadrzaj {
+  width: 80%;
+  overflow-y: auto;
+  padding-top: 30px;
+  text-align: justify;
+  padding-right: 10px;
+  height: 150px;
+}
+.izvestaj-sadrzaj h4 {
+  font-size: clamp(18px, 20px, 22px);
+  font-weight: 400;
+}
+.btn {
+  border: 1px solid white;
+  background-color: #adc4ce;
+}
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+.btn a {
+  text-decoration: none;
+  color: white;
+}
+.btn a:hover {
+  color: #adc4ce;
+}

@@ -1,0 +1,100 @@
+<div class="nav-main">
+  <div class="logo-container">
+    <div class="logo-img">
+      <img src="../../assets/RCLogo.png" class="logo" alt="Logo" />
+    </div>
+    <div class="logoText">
+      <h2>Rehabilitacioni<br />centar</h2>
+    </div>
+  </div>
+  <div *ngIf="LoggedIn()" class="nav-ul">
+    <ul class="nav nav-tabs justify-content-end">
+      <li class="nav-item">
+        <a
+          [routerLink]="['profil']"
+          routerLinkActive="router-link-active"
+          class="nav-link nav-item-a link-dark"
+          >Profil</a
+        >
+      </li>
+      <li class="nav-item nav-item-a dropdown" ngbDropdown>
+        <a
+          class="nav-link link-dark dropdown-toggle"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+          >Dodatno</a
+        >
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <a
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['izvestaji']"
+            routerLinkActive="router-link-active"
+            >Izvestaji korisnika</a
+          >
+          <a
+            class="dropdown-item nav-item-a-1 nav-item-a-1 link-dark"
+            [routerLink]="['terapije']"
+            routerLinkActive="router-link-active"
+            >Terapije korisnika</a
+          >
+          <a
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['sesije']"
+            routerLinkActive="router-link-active"
+            >Sesije korisnika</a
+          >
+          <a
+            *ngIf="SetRole() == 2"
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['pacijenti']"
+            routerLinkActive="router-link-active"
+            >Pacijenti</a
+          >
+          <a
+            *ngIf="SetRole() == 2"
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['addSoba']"
+            routerLinkActive="router-link-active"
+            >Dodaj sobu</a
+          >
+          <a
+            *ngIf="SetRole() == 2"
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['addOprema']"
+            routerLinkActive="router-link-active"
+            >Dodaj opremu</a
+          >
+          <a
+            *ngIf="SetRole() == 2"
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['oprema']"
+            routerLinkActive="router-link-active"
+            >Oprema</a
+          >
+
+          <a
+            *ngIf="SetRole() == 2"
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['korisnici']"
+            routerLinkActive="router-link-active"
+            >Korisnici</a
+          >
+
+          <a
+            *ngIf="SetRole() == 2 || SetRole() == 1"
+            class="dropdown-item nav-item-a-1 link-dark"
+            [routerLink]="['sobe']"
+            routerLinkActive="router-link-active"
+            >Sobe</a
+          >
+        </div>
+      </li>
+      <li class="nav-item">
+        <a (click)="LogOut()" class="nav-item-a link-dark nav-link"
+          >Odjavite se</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+<chat *ngIf="LoggedIn()"></chat>

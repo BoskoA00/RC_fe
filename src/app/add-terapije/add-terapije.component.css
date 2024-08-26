@@ -1,0 +1,171 @@
+.addTerapije-main {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  background-color: #96b6c5;
+}
+.addTerapije-1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding: 50px;
+}
+.addTerapije-form {
+  width: 100%;
+  height: 50%;
+}
+.btn {
+  margin-top: 25px;
+  border: 1px solid white;
+  background-color: #adc4ce;
+}
+.btn:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+.sesije-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-top: 50px;
+}
+.sesije-data {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+}
+.sesije-data-rb {
+  padding-top: 10px;
+  align-items: start;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 30%;
+  border-bottom: 1px solid black;
+  height: 100%;
+}
+.sesije-data-datum {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  border-bottom: 1px solid black;
+  width: 50%;
+  overflow: hidden;
+  height: 100%;
+}
+.sesije-data-datum input {
+  width: 80%;
+  height: 27px;
+}
+.sesije-data-vr {
+  border-bottom: 1px solid black;
+  width: 50%;
+  overflow: hidden;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+}
+.sesije-data-vr input {
+  width: 80%;
+  height: 27px;
+}
+.sesije-data-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid black;
+
+  height: 300px;
+}
+.error-msg {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: red;
+}
+.sesije-delete-button {
+  border-bottom: 1px solid black;
+  width: 50%;
+  overflow: hidden;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  display: flex;
+  padding-top: 10px;
+}
+.sesije-delete-button button {
+  font-weight: 400;
+  height: 50%;
+  width: 50%;
+  color: #212529;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  border: 1px solid white;
+  background-color: #adc4ce;
+}
+.sesije-delete-button button:hover {
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  margin-bottom: 15px;
+  border: 2px solid #adc4ce;
+}
+.sesije-delete-button button:hover > svg {
+  fill: #adc4ce;
+}
+.add-sesije-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.add-sesije-button button {
+  margin-top: 15px;
+  border: 1px solid white;
+  background-color: #adc4ce;
+  margin-right: 10px;
+}
+.add-sesije-button button:hover {
+  background-color: white;
+  color: #adc4ce;
+}
+textArea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  resize: none;
+}
+@media screen and (max-width: 768px) {
+  .addTerapije-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .sesije-div {
+    margin-top: 0px;
+  }
+  .sesije-text {
+    width: 100%;
+    text-align: center;
+  }
+}

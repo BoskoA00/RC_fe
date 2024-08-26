@@ -1,0 +1,173 @@
+<div class="profil-main">
+  <div
+    class="container-fluid d-flex flex-xl-row flex-l-row flex-md-r flex-sm-colum profil-data"
+  >
+    <div class="profil-img">
+      <img src="../../assets/RCLogo.png" class="img-thumbnail" />
+    </div>
+    <div class="profil-info">
+      <div class="profil-names">
+        <h4>{{ korisnik.firstName }} {{ korisnik.lastName }}</h4>
+      </div>
+      <div class="profil-uloga">
+        <h4>{{ korisnik.role | role }}</h4>
+      </div>
+      <div>
+        <h4>{{ korisnik.datumRodjenja }}</h4>
+      </div>
+      <div>
+        <h4>{{ korisnik.kontakt }}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="TI-table" *ngIf="korisnik.role != 2">
+    <div class="T-table">
+      <div class="T-table-1">
+        <div>
+          <h5>
+            Terapije
+            <span *ngIf="korisnik.role == 0">pacijenta</span>
+            <span *ngIf="korisnik.role == 1">doktora</span>
+          </h5>
+        </div>
+        <div class="checkbox-wrapper-51">
+          <input id="cbx-51" type="checkbox" (change)="terapijeToggle()" />
+          <label class="toggle" for="cbx-51">
+            <span>
+              <svg viewBox="0 0 10 10" height="10px" width="10px">
+                <path
+                  d="M5,1 L5,1 C2.790861,1 1,2.790861 1,5 L1,5 C1,7.209139 2.790861,9 5,9 L5,9 C7.209139,9 9,7.209139 9,5 L9,5 C9,2.790861 7.209139,1 5,1 L5,9 L5,1 Z"
+                ></path>
+              </svg>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div
+        class="T-table-2"
+        *ngIf="terapijeView"
+        [ngClass]="{ show: terapijeView, hide: !terapijeView }"
+      >
+        <table class="terapije-table">
+          <thead>
+            <tr>
+              <th *ngIf="korisnik.role == 0">Doktor</th>
+              <th *ngIf="korisnik.role == 1">Pacijent</th>
+              <th>Sadrzaj</th>
+              <th>Datum pocetka</th>
+              <th>Datum kraja</th>
+              <th>Broj sesija</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of terapije">
+              <td>
+                <a
+                  [routerLink]="['/terapija', i.id]"
+                  routerLinkActive="router-link-active"
+                >
+                  <span *ngIf="korisnik.role == 0"
+                    >{{ i.doktor.firstName }} {{ i.doktor.lastName }}</span
+                  >
+                  <span *ngIf="korisnik.role == 1"
+                    >{{ i.pacijent.firstName }} {{ i.pacijent.lastName }}</span
+                  >
+                </a>
+              </td>
+              <td>
+                <a
+                  [routerLink]="['/terapija', i.id]"
+                  routerLinkActive="router-link-active"
+                  >{{ i.sadrzaj | izvestaj }}</a
+                >
+              </td>
+              <td>
+                <a
+                  [routerLink]="['/terapija', i.id]"
+                  routerLinkActive="router-link-active"
+                  >{{ i.datumPocetka }}</a
+                >
+              </td>
+              <td>
+                <a
+                  [routerLink]="['/terapija', i.id]"
+                  routerLinkActive="router-link-active"
+                  >{{ i.datumKraja }}</a
+                >
+              </td>
+              <td>
+                <a
+                  [routerLink]="['/terapija', i.id]"
+                  routerLinkActive="router-link-active"
+                  >{{ i.brojSesija }}</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="">
+      <div class="I-table">
+        <div class="I-table-1">
+          <div>
+            <h5>
+              Izvestaji <span *ngIf="korisnik.role == 0">pacijenta</span>
+              <span *ngIf="korisnik.role == 1">doktora</span>
+            </h5>
+          </div>
+          <div class="checkbox-wrapper-52">
+            <input id="cbx-52" type="checkbox" (change)="izvestajiToggle()" />
+            <label class="toggle" for="cbx-52">
+              <span>
+                <svg viewBox="0 0 10 10" height="10px" width="10px">
+                  <path
+                    d="M5,1 L5,1 C2.790861,1 1,2.790861 1,5 L1,5 C1,7.209139 2.790861,9 5,9 L5,9 C7.209139,9 9,7.209139 9,5 L9,5 C9,2.790861 7.209139,1 5,1 L5,9 L5,1 Z"
+                  ></path>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div
+          class="I-table-2"
+          *ngIf="izvestajiView"
+          [ngClass]="{ show: izvestajiView, hide: !izvestajiView }"
+        >
+          <table class="izvestaji-table">
+            <thead>
+              <tr>
+                <th *ngIf="korisnik.role == 0">Doktor</th>
+                <th *ngIf="korisnik.role == 1">Pacijent</th>
+                <th>Sadrzaj</th>
+                <th>Datum</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let izvestaj of izvestaji">
+                <td>
+                  <span *ngIf="korisnik.role == 0"
+                    >{{ izvestaj.doktor.firstName }}
+                    {{ izvestaj.doktor.lastName }}</span
+                  >
+                  <span *ngIf="korisnik.role == 1"
+                    >{{ izvestaj.pacijent.firstName }}
+                    {{ izvestaj.pacijent.lastName }}</span
+                  >
+                </td>
+                <td>
+                  <a
+                    [routerLink]="['/izvestaj', izvestaj.id]"
+                    routerLinkActive="router-link-active"
+                    >{{ izvestaj.sadrzaj | izvestaj }}</a
+                  >
+                </td>
+                <td>{{ izvestaj.vremeStvaranja }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,97 @@
+<div class="addOprema-main">
+  <div class="addOprema-1">
+    <form class="addOprema-form" [formGroup]="addOpremaForm">
+      <div class="form-group">
+        <label for="naziv">Naziv opreme</label>
+        <input
+          [(ngModel)]="naziv"
+          formControlName="naziv"
+          type="text"
+          class="form-control"
+          name="naziv"
+          id="naziv"
+          aria-describedby="helpId"
+        />
+        <small
+          id="helpId"
+          *ngIf="Naziv.touched && Naziv.invalid && Naziv.errors?.required"
+          class="form-text text-muted"
+          >Naziv opreme je obavezan</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="sifra">Sifra opreme</label>
+        <input
+          (input)="checkSifra()"
+          type="text"
+          class="form-control"
+          name="sifra"
+          id="sifra"
+          formControlName="sifra"
+          [(ngModel)]="sifra"
+          aria-describedby="helpId"
+        />
+        <small
+          id="helpId"
+          *ngIf="Sifra.invalid && Sifra.touched && Sifra.errors?.required"
+          class="form-text text-muted"
+          >Sifra je obavezna</small
+        >
+        <small id="helpId" *ngIf="proveraSifre" class="form-text text-muted"
+          >Sifra je zauzeta</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="soba">Broj sobe:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="brojSobe"
+          id="brojSobe"
+          aria-describedby="helpId"
+          placeholder="Soba u kojoj se oprema nalazi"
+          [(ngModel)]="brojSobe"
+          formControlName="brojSobe"
+          (input)="checkSoba()"
+          list="sobe"
+        />
+        <datalist id="sobe">
+          <option *ngFor="let item of sobe">{{ item.brojSobe }}</option>
+        </datalist>
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="
+            BrojSobe.touched && BrojSobe.invalid && BrojSobe.errors?.required
+          "
+          >Soba je obavezna</small
+        >
+        <small id="helpId" class="form-text text-muted" *ngIf="proveraSobe"
+          >Soba je ne postoji</small
+        >
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="proveraZauzetostiSobe"
+          >Soba je zauzeta</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="poslednjeOdrzavanje">Datum poslednjeg odrzavanja:</label>
+        <input
+          type="date"
+          class="form-control"
+          name="poslednjeOdrzavanje"
+          id="poslednjeOdrzavanje"
+          aria-describedby="helpId"
+          [(ngModel)]="poslednjeOdrzavanje"
+          formControlName="datumPoslednjegOdrzavaja"
+          [attr.min]="minDate"
+        />
+      </div>
+      <button type="button" (click)="dodajOpremu()" class="btn btn-primary">
+        Dodaj opremu
+      </button>
+    </form>
+  </div>
+</div>

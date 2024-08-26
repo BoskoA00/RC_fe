@@ -1,0 +1,64 @@
+<div *ngIf="!opened" class="zatvoren" (click)="openChat()">
+  <div>
+    <span>Poruke</span>
+  </div>
+  <div *ngIf="brojNeprocitanihPoruka > 0" class="unread-n">
+    <span>
+      {{ brojNeprocitanihPoruka }}
+    </span>
+  </div>
+</div>
+<div class="otvoren" *ngIf="opened">
+  <div class="otvoren-heading">
+    <p>Poruke</p>
+    <div>
+      <img src="assets/refresh.svg" alt="Refresh Icon" (click)="refresh()" />
+      <img src="assets/plus.svg" alt="Plus Icon" (click)="novaPoruka()" />
+      <img src="assets/close.svg" alt="Close Icon" (click)="openChat()" />
+    </div>
+  </div>
+  <div class="poruke-container" *ngIf="!novaP">
+    <div class="poruke-lista">
+      <div
+        class="poruka-lista"
+        *ngFor="let poruka of poruke"
+        (click)="selectPoruku(poruka.id)"
+        [ngClass]="{
+          'unread-message': poruka.status == 0 && poruka.senderId != senderId
+        }"
+      >
+        <div class="poruka-lista-1" *ngIf="poruka.senderId == senderId">
+          <span>You</span>
+        </div>
+        <div class="poruka-lista-1" *ngIf="poruka.senderId != senderId">
+          <span>{{ poruka.senderUserName }}</span>
+        </div>
+        <div class="poruka-lista-2">
+          <span>{{ poruka.content | izvestaj }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="poruka-content" *ngIf="messageSelected && selectedMessage">
+      <div class="poruka-content-sender">
+        <span>{{ selectedMessage.sender }}</span>
+      </div>
+      <div class="poruka-content-content">
+        <span>{{ selectedMessage.content }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="nova-poruka-container" *ngIf="novaP">
+    <div class="nova-poruka-reciever">
+      <input type="text" list="users" [(ngModel)]="messageReceiver" />
+      <datalist id="users">
+        <option *ngFor="let user of users">
+          {{ user.userName }}
+        </option>
+      </datalist>
+      <img src="assets/send.svg" alt="Send Icon" (click)="sendPoruku()" />
+    </div>
+    <div class="nova-poruka-content">
+      <textarea resize="disabled" [(ngModel)]="messageContent"></textarea>
+    </div>
+  </div>
+</div>

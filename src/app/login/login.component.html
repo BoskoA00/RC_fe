@@ -1,0 +1,226 @@
+<div class="login-main">
+  <div class="login-forma">
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="username">Korisnicko ime:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="form-control"
+          placeholder="Unesite vase korisnicko ime..."
+          aria-describedby="helpId"
+          [(ngModel)]="userName"
+          formControlName="userName"
+          (input)="userNameChange()"
+        />
+        <small
+          *ngIf="
+            LoginUsername.touched &&
+            LoginUsername.errors?.minlength &&
+            LoginUsername.invalid
+          "
+          id="helpId"
+          class="text-muted"
+          >Korisnicko ime mora biti duze od 4 karaktera</small
+        >
+        <small *ngIf="userDoesntExist" id="helpId" class="text-muted"
+          >Korisnik ne postoji</small
+        >
+        <small
+          *ngIf="
+            LoginUsername.touched &&
+            LoginUsername.errors?.required &&
+            LoginUsername.invalid
+          "
+          id="helpId"
+          class="text-muted"
+          >Korsinicko ime je obavezno</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="password">Lozinka:</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          placeholder="Unesite vasu lozinku..."
+          aria-describedby="helpId"
+          [(ngModel)]="password"
+          formControlName="password"
+          (input)="passwordChange()"
+        />
+        <small
+          id="helpId"
+          *ngIf="
+            LoginPassword.touched &&
+            LoginPassword.errors?.required &&
+            LoginPassword.invalid
+          "
+          class="text-muted"
+          >Lozinka je obavezna</small
+        >
+        <small id="helpId" *ngIf="wrongPassword" class="text-muted"
+          >Pogresna lozinka</small
+        >
+        <small
+          id="helpId"
+          *ngIf="
+            LoginPassword.touched &&
+            LoginPassword.errors?.minlength &&
+            LoginPassword.invalid
+          "
+          class="text-muted"
+          >Lozinka mora biti duza od 6 karaktera</small
+        >
+      </div>
+      <div *ngIf="registerForm" class="register-form">
+        <div class="form-group">
+          <label for="passwordConfirm">Potvrdite lozinku:</label>
+          <input
+            type="password"
+            name="passwordConfirm"
+            id="passwordConfirm"
+            class="form-control"
+            placeholder="Unesite jos jednom vasu lozinku"
+            aria-describedby="helpId"
+            [(ngModel)]="confirmPassword"
+            (change)="confirmPasswordChange()"
+            formControlName="confirmPassword"
+          />
+          <small id="helpId" *ngIf="confirmPasswordError" class="text-muted"
+            >Lozinke se ne poklapaju</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="ime">Ime:</label>
+          <input
+            type="text"
+            name="ime"
+            id="ime"
+            class="form-control"
+            placeholder="Unesite vase korisnicko ime..."
+            aria-describedby="helpId"
+            [(ngModel)]="ime"
+            formControlName="firstName"
+          />
+          <small
+            *ngIf="
+              RegisterIme.touched &&
+              RegisterIme.invalid &&
+              RegisterIme.errors?.required
+            "
+            id="helpId"
+            class="text-muted"
+            >Ime je obavezno</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="prezime">Prezime:</label>
+          <input
+            type="text"
+            name="prezime"
+            id="prezime"
+            class="form-control"
+            placeholder="Unesite vase korisnicko ime..."
+            aria-describedby="helpId"
+            [(ngModel)]="prezime"
+            formControlName="lastName"
+          />
+          <small
+            *ngIf="
+              RegisterPrezime.touched &&
+              RegisterPrezime.errors?.required &&
+              RegisterPrezime.invalid
+            "
+            id="helpId"
+            class="text-muted"
+            >Prezime je neophodno</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="kontakt">Kontakt informacije:</label>
+          <input
+            type="text"
+            name="kontakt"
+            id="kontakt"
+            class="form-control"
+            placeholder="Broj telefona i/ili email adresa"
+            aria-describedby="helpId"
+            [(ngModel)]="kontakt"
+            formControlName="formKontakt"
+          />
+          <small
+            id="helpId"
+            *ngIf="
+              RegisterKontakt.invalid &&
+              RegisterKontakt.errors?.required &&
+              RegisterKontakt.touched
+            "
+            class="text-muted"
+            >Kontakt je obavezan</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="datumRodjenja">Datum rodjenja:</label>
+          <input
+            type="date"
+            name="datumRodjenja"
+            id="datumRodjenja"
+            class="form-control"
+            aria-describedby="helpId"
+            [max]="maksimalanDatum"
+            [(ngModel)]="datumRodjenja"
+            formControlName="datumRodjenja"
+          />
+          <small
+            id="helpId"
+            *ngIf="
+              RegisterDatum.touched &&
+              RegisterDatum.invalid &&
+              RegisterDatum.errors?.required
+            "
+            class="text-muted"
+            >Datum rodjenja je obavezan</small
+          >
+        </div>
+      </div>
+      <div class="form-submit">
+        <div *ngIf="!registerForm">
+          <button
+            type="button"
+            (click)="registerFormToggle()"
+            class="btn btn-primary"
+          >
+            Forma za registraciju
+          </button>
+        </div>
+        <div *ngIf="registerForm">
+          <button
+            type="button"
+            (click)="registerFormToggle()"
+            class="btn btn-primary"
+          >
+            Forma za logovanje
+          </button>
+        </div>
+        <div *ngIf="!registerForm">
+          <button type="button" (click)="loginUser()" class="btn btn-primary">
+            Login
+          </button>
+        </div>
+
+        <div *ngIf="registerForm">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="registerUser()"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

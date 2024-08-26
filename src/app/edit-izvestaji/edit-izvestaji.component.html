@@ -1,0 +1,51 @@
+<div class="editIzvestaj-main">
+  <div class="editIzvestaj-1">
+    <form class="editIzvestaj-forma">
+      <div class="form-group">
+        <label for="sifra">Sifra izvestaja</label>
+        <input
+          type="text"
+          class="form-control"
+          name="sifra"
+          id="sifra"
+          aria-describedby="helpId"
+          placeholder="Unesite sifru izvestaja koji zelite da menjate"
+          [(ngModel)]="sifraIzvestaja"
+          disabled
+        />
+        <small id="helpId" class="form-text text-muted">Help text</small>
+      </div>
+
+      <div class="form-group form-input">
+        <label for="pacijent">Pacijent</label>
+        <input
+          type="text"
+          class="form-control"
+          name="pacijent"
+          id="pacijent"
+          [value]="imePacijenta + ' ' + prezimePacijenta"
+          disabled
+        />
+      </div>
+
+      <div class="form-group form-input">
+        <label for="sadrzaj">Sadrzaj izvestaja:</label>
+        <textarea
+          class="form-control form-textarea"
+          name="sadrzaj"
+          id="sadrzaj"
+          rows="3"
+          [(ngModel)]="sadrzaj"
+          required
+        ></textarea>
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="updateIzvestaj()">
+        Unesi izmene
+      </button>
+      <button type="button" class="btn btn-delete" (click)="deleteIzvestaj()">
+        Izbrisi izvestaj
+      </button>
+    </form>
+  </div>
+</div>

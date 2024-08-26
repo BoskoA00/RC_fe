@@ -1,0 +1,52 @@
+<div class="oprema-main">
+  <div class="oprema-1">
+    <div class="oprema-1-1">
+      <div>
+        <div class="oprema-title">
+          <h2>Oprema:</h2>
+          <input
+            type="text"
+            placeholder="Pretrazi sifrom"
+            [(ngModel)]="searchTerm"
+            (input)="changeSearch()"
+          />
+        </div>
+      </div>
+      <a [routerLink]="['/addOprema']" routerLinkActive="router-link-active">
+        <button class="btn btn-primary">Dodaj opremu</button>
+      </a>
+    </div>
+    <div class="oprema-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sifra</th>
+            <th>Naziv</th>
+            <th>Datum poslednjeg odrzavanja</th>
+            <th>Soba</th>
+            <th *ngIf="role == 2">Opcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let opr of searching ? filteredOprema : oprema">
+            <td>{{ opr.sifra }}</td>
+            <td>{{ opr.naziv }}</td>
+            <td>{{ opr.poslednjeOdrzavanje }}</td>
+            <td>{{ opr.soba.brojSobe }}</td>
+            <td *ngIf="role == 2" class="oprema-options">
+              <button class="btn btn-primary" (click)="deleteOprema(opr.id)">
+                Izbrisi opremu
+              </button>
+              <a
+                [routerLink]="['/editOprema', opr.id]"
+                routerLinkActive="router-link-active"
+              >
+                <button class="btn btn-success">Izmeni opremu</button>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

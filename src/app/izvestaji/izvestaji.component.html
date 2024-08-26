@@ -1,0 +1,124 @@
+<div class="izvestaji-main d-flex flex-row justify-content-center">
+  <div class="izvestaji-1 d-flex flex-column justify-content-start">
+    <div class="izvestaji-1-1">
+      <div class="izvestaji-title">
+        <h3>Izvestaji korisnika:</h3>
+        <input
+          type="text"
+          placeholder="Pretrazite sa sifrom"
+          (input)="changeSearch()"
+          [(ngModel)]="searchTerm"
+        />
+      </div>
+      <button *ngIf="role == 1 || role == 2" class="btn btn-primary">
+        <a [routerLink]="['/addIzvestaj']" routerLinkActive="router-link-active"
+          >Dodajte izvestaj</a
+        >
+      </button>
+    </div>
+    <div class="izvestaji-table">
+      <div class="izvestaji-table-headers">
+        <div>
+          <h4>Sifra</h4>
+        </div>
+        <div *ngIf="role == 0">
+          <h4>Doktor</h4>
+        </div>
+        <div *ngIf="role == 1">
+          <h4>Pacijent</h4>
+        </div>
+        <div *ngIf="role == 2">
+          <div>
+            <h4>Pacijent</h4>
+          </div>
+          <div>
+            <h4>Doktor</h4>
+          </div>
+        </div>
+        <div>
+          <h4>Sadrzaj</h4>
+        </div>
+        <div>
+          <h4>Datum nastanka</h4>
+        </div>
+        <div *ngIf="role == 2">
+          <h4>Opcije</h4>
+        </div>
+      </div>
+      <div class="izvestaji-table-data">
+        <div
+          class="izvestaji-table-row"
+          *ngFor="let i of searching ? filteredIzvestaji : izvestaji"
+        >
+          <div>
+            <h5>
+              <a
+                [routerLink]="['/izvestaj/', i.id]"
+                routerLinkActive="router-link-active"
+                >{{ i.sifra }}</a
+              >
+            </h5>
+          </div>
+          <div *ngIf="role == 0">
+            <h5>
+              <a
+                [routerLink]="['/izvestaj/', i.id]"
+                routerLinkActive="router-link-active"
+                >{{ i.doktor.firstName }} {{ i.doktor.lastName }}</a
+              >
+            </h5>
+          </div>
+          <div *ngIf="role == 1">
+            <h5>
+              <a
+                [routerLink]="['/izvestaj/', i.id]"
+                routerLinkActive="router-link-active"
+                >{{ i.pacijent.firstName }} {{ i.pacijent.lastName }}</a
+              >
+            </h5>
+          </div>
+          <div
+            *ngIf="role == 2"
+            style="display: flex; justify-content: space-evenly; width: 100%"
+          >
+            <div>
+              <h5>
+                <a
+                  [routerLink]="['/izvestaj/', i.id]"
+                  routerLinkActive="router-link-active"
+                  >{{ i.pacijent.firstName }} {{ i.pacijent.lastName }}</a
+                >
+              </h5>
+            </div>
+            <div>
+              <h5>
+                <a
+                  [routerLink]="['/izvestaj/', i.id]"
+                  routerLinkActive="router-link-active"
+                  >{{ i.doktor.firstName }} {{ i.doktor.lastName }}</a
+                >
+              </h5>
+            </div>
+          </div>
+          <div>
+            <h5>
+              <a
+                [routerLink]="['/izvestaj/', i.id]"
+                routerLinkActive="router-link-active"
+                >{{ i.sadrzaj | izvestaj }}</a
+              >
+            </h5>
+          </div>
+          <div>
+            <h5>{{ i.vremeStvaranja | datum : 0 }}</h5>
+          </div>
+          <div *ngIf="role == 2 || role == 1">
+            <button class="btn btn-primary" (click)="deleteIzvestaj(i.id)">
+              Izbrisi izvestaj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

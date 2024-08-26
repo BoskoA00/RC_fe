@@ -1,0 +1,203 @@
+<div class="addTerapije-main">
+  <div class="addTerapije-1">
+    <form class="addTerapije-form" [formGroup]="formaTerapije">
+      <div class="form-group">
+        <label for="naziv">Sifra terapije:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="naziv"
+          id="naziv"
+          aria-describedby="helpId"
+          [(ngModel)]="sifra"
+          (change)="proveraSifre()"
+          formControlName="sifra"
+        />
+        <small id="helpId" class="form-text text-muted" *ngIf="sifraZauzeta"
+          >Sifra je zauzeta</small
+        >
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="Sifra.touched && Sifra.errors?.required && Sifra.invalid"
+          >Sifra je obavezna</small
+        >
+      </div>
+      <div class="form-group textArea">
+        <label for="sadrzaj">Sadrzaj terapije:</label>
+        <textarea
+          id="sadrzaj"
+          name="sadzraj"
+          [(ngModel)]="sadrzaj"
+          formControlName="sadrzaj"
+        >
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="pacijent">Pacijent:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="pacijent"
+          id="pacijent"
+          required
+          list="pacijenti"
+          [(ngModel)]="imePacijenta"
+          formControlName="imePacijenta"
+          (change)="SelekcijaPacijenta()"
+        />
+        <datalist id="pacijenti">
+          <option *ngFor="let pacijent of pacijenti">
+            {{ pacijent.id }}-{{ pacijent.firstName }} {{ pacijent.lastName }}
+          </option>
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label for="datumPocetka">Datum pocetka:</label>
+        <input
+          type="date"
+          name="datumPocetka"
+          id="datumPocetka"
+          class="form-control"
+          aria-describedby="helpId"
+          [(ngModel)]="datumPocetka"
+          formControlName="datumPocetka"
+          [attr.min]="minDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="datumRodjenja">Datum kraja:</label>
+        <input
+          type="date"
+          name="datumKraja"
+          id="datumKraja"
+          class="form-control"
+          aria-describedby="helpId"
+          [(ngModel)]="datumKraja"
+          formControlName="datumKraja"
+          [attr.min]="minDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="brSesija">Broj sesija</label>
+        <input
+          type="text"
+          class="form-control"
+          name="brSesija"
+          id="brSesija"
+          aria-describedby="helpId"
+          [(ngModel)]="brojSesija"
+          formControlName="brojSesija"
+          (change)="sesijeChange()"
+        />
+        <small
+          id="helpId"
+          class="form-text text-muted"
+          *ngIf="
+            BrojSesija.invalid &&
+            BrojSesija.errors?.required &&
+            BrojSesija.touched
+          "
+          >Obavezno</small
+        >
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="addTerapija()">
+        Dodaj terapiju
+      </button>
+    </form>
+  </div>
+  <div class="sesije-div">
+    <div class="sesije-text">
+      <h4>Sesije:</h4>
+    </div>
+    <div class="sesije-data" *ngFor="let sesija of sesije; index as i">
+      <div class="sesije-data-rb">
+        <h6>Sesija {{ i + 1 }}</h6>
+      </div>
+      <div class="sesije-data-datum">
+        <div class="sesije-data-inputs">
+          <input
+            type="text"
+            class="form-control"
+            list="sobe"
+            [(ngModel)]="sesije[i].brojSobe"
+            placeholder="Broj sobe"
+            (input)="promenaSobe(i)"
+          />
+          <datalist id="sobe">
+            <option *ngFor="let item of sobe">{{ item.brojSobe }}</option>
+          </datalist>
+          <small
+            id="helpId"
+            class="form-text text-muted"
+            *ngIf="sesije[i].sobaCheck"
+            >Soba nije dostupna</small
+          >
+        </div>
+      </div>
+      <div class="sesije-data-datum">
+        <div class="sesije-data-inputs">
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="sesije[i].datum"
+            placeholder="DD/MM/YYYY"
+            [attr.min]="minDate"
+          />
+          <small
+            id="helpId"
+            class="form-text text-muted"
+            *ngIf="sesije[i].datumCheck"
+            >Neispravan datum</small
+          >
+        </div>
+      </div>
+      <div class="sesije-data-vr">
+        <div class="sesije-data-inputs">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="HH:MM"
+            [(ngModel)]="sesije[i].vreme"
+            (input)="promenaVremena(i)"
+            maxlength="5"
+            (focusout)="vremeCheck(i)"
+          />
+          <small
+            id="helpId"
+            class="form-text text-muted"
+            *ngIf="sesije[i].vremeCheck"
+            >Neispravno vreme</small
+          >
+        </div>
+      </div>
+      <div class="sesije-delete-button">
+        <button (click)="removeSesija(i)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="100%"
+            viewBox="0 -960 960 960"
+            width="100%"
+            fill="white"
+          >
+            <path
+              d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="add-sesije-button">
+      <button class="btn btn-primary" (click)="addSesije()" *ngIf="dodajSesije">
+        Dodaj sesiju
+      </button>
+      <button
+        class="btn btn-primary"
+        (click)="SesijeUpload()"
+        *ngIf="uploadSesije"
+      >
+        Unesi sesije
+      </button>
+    </div>
+  </div>
+</div>

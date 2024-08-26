@@ -1,0 +1,38 @@
+<div class="terapija-main">
+  <div class="terapija-1">
+    <div class="terapija-sadrzaj">
+      <h6>
+        {{ terapija.sadrzaj }}
+      </h6>
+      <a
+        [routerLink]="['/editTerapija/', terapija.id]"
+        routerLinkActive="router-link-active"
+      >
+        <button class="btn btn-primary" *ngIf="role == 2 || role == 1">
+          Izmeni terapiju
+        </button>
+      </a>
+    </div>
+    <div class="terapija-text">
+      <h4>Sesije terapije:</h4>
+    </div>
+    <div class="terapija-sesije">
+      <table>
+        <thead>
+          <tr>
+            <th>Redni broj sesije</th>
+            <th>Datum</th>
+            <th>Prostorija</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sesija of sesije; index as i">
+            <td>{{ i + 1 }}. sesija</td>
+            <td>{{ sesija.termin }}h</td>
+            <td>{{ sesija.soba.brojSobe }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

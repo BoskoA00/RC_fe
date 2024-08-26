@@ -1,0 +1,26 @@
+<div class="pacijent-main">
+  <div
+    class="container-fluid d-flex flex-xl-row flex-l-row flex-md-r flex-sm-colum pacijent-data"
+  >
+    <div class="pacijent-img">
+      <img src="../../assets/RCLogo.png" class="img-thumbnail" />
+    </div>
+    <div class="pacijent-info">
+      <div class="pacijent-names">
+        <h4>{{ korisnik.firstName }} {{ korisnik.lastName }}</h4>
+      </div>
+      <div class="pacijent-uloga">
+        <h4>{{ korisnik.role | role }}</h4>
+      </div>
+      <div>
+        <h4>{{ korisnik.datumRodjenja }}</h4>
+      </div>
+      <div>
+        <h4>{{ korisnik.kontakt }}</h4>
+      </div>
+      <div>
+        <h4>{{ korisnik.userName }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
