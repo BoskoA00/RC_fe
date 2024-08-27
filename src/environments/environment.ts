@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlLocal: 'https://localhost:7096/api/',
+  urlLocal: 'http://boskowindows3-001-site1.jtempurl.com/api/',
 };
-export const urlLocal = 'https://localhost:7096/api/';
+export const urlLocal = 'http://boskowindows3-001-site1.jtempurl.com/api/';
 
 /*
  * For easier debugging in development mode, you can import the following file
