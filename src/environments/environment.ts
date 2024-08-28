@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlLocal: 'http://boskowindows3-001-site1.jtempurl.com/api/',
+  urlLocal: 'http://boskohosting123.runasp.net/api/',
 };
-export const urlLocal = 'http://boskowindows3-001-site1.jtempurl.com/api/';
+export const urlLocal = 'http://boskohosting123.runasp.net/api/';
 
 /*
  * For easier debugging in development mode, you can import the following file
