@@ -4,9 +4,15 @@
 
 export const environment = {
   production: false,
-  urlLocal: 'http://boskohosting123.runasp.net/api/',
+  urlLocal: '*',
 };
-export const urlLocal = 'http://boskohosting123.runasp.net/api/';
+export const urlLocal = '*';
+
+export enum UserRole {
+  Admin = 2,
+  Terapeut = 1,
+  Pacijent = 0,
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

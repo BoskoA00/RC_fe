@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
-
+import { UserRole } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -24,8 +24,8 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     if (
       this.userService.loggedUser &&
-      (this.userService.loggedUser.role == 2 ||
-        this.userService.loggedUser.role == 1)
+      (this.userService.loggedUser.role == UserRole.Admin ||
+        this.userService.loggedUser.role == UserRole.Pacijent)
     ) {
       return true;
     } else {
