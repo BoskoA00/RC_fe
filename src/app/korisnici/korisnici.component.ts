@@ -39,6 +39,7 @@ export class KorisniciComponent implements OnInit {
   }
   deleteUser(id: number): void {
     this.userService.deleteUser(id).subscribe((res: any) => {
+      console.log(res);
       this.loadUsers();
     });
   }

@@ -54,7 +54,13 @@ export class UserService {
   }
 
   deleteUser(id: number) {
-    return this.http.delete<any>(urlLocal + 'users/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    console.log(headers);
+    return this.http.delete<any>(`${urlLocal}users/${id}`, { headers });
   }
 
   getUserByUsername(userName: string) {

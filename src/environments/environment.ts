@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlLocal: '*',
+  urlLocal: 'https://localhost:7096/api/',
 };
-export const urlLocal = '*';
+export const urlLocal = 'https://localhost:7096/api/';
 
 export enum UserRole {
   Admin = 2,
