@@ -30,7 +30,6 @@ export class EditIzvestajiComponent implements OnInit {
   loadIzvestaj(): void {
     this.izvestajServ.getIzvestajById(this.idIzvestaja).subscribe(
       (data) => {
-        console.log(data);
         this.sadrzaj = data.sadrzaj;
         this.imePacijenta = data.pacijent.firstName;
         this.prezimePacijenta = data.pacijent.lastName;

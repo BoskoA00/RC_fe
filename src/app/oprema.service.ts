@@ -21,23 +21,46 @@ export class OpremaService {
     return this.http.get<any>(urlLocal + 'Oprema/BySobaId/' + id);
   }
   createOprema(data: any) {
-    return this.http.post<any>(urlLocal + 'Oprema', {
-      sifra: data.sifra,
-      naziv: data.naziv,
-      idSobe: data.idSobe,
-      poslednjeOdrzavanje: data.poslednjeOdrzavanje,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post<any>(
+      urlLocal + 'Oprema',
+      {
+        sifra: data.sifra,
+        naziv: data.naziv,
+        idSobe: data.idSobe,
+        poslednjeOdrzavanje: data.poslednjeOdrzavanje,
+      },
+      { headers }
+    );
   }
   updateOprema(id: number, data: any) {
-    return this.http.put<any>(urlLocal + 'Oprema/' + id, {
-      sifra: data.sifra,
-      naziv: data.naziv,
-      idSobe: data.idSobe,
-      poslednjeOdrzavanje: data.poslednjeOdrzavanje,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Oprema/' + id,
+      {
+        sifra: data.sifra,
+        naziv: data.naziv,
+        idSobe: data.idSobe,
+        poslednjeOdrzavanje: data.poslednjeOdrzavanje,
+      },
+      { headers }
+    );
   }
   deleteOprema(id: number) {
-    return this.http.delete<any>(urlLocal + 'Oprema/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Oprema/' + id, { headers });
   }
   checkSifra(sifra: string) {
     return this.http.get<boolean>(urlLocal + 'Oprema/sifraTaken/' + sifra);

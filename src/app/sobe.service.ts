@@ -18,26 +18,76 @@ export class SobeService {
     return this.http.get<any>(urlLocal + 'Soba/byBrojSobe/' + brojSobe);
   }
   createSoba(data: any) {
-    return this.http.post<any>(urlLocal + 'Soba', {
-      brojSobe: data.brojSobe,
-      status: data.status,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post<any>(
+      urlLocal + 'Soba',
+      {
+        brojSobe: data.brojSobe,
+        status: data.status,
+      },
+      { headers }
+    );
   }
   updateSoba(data: any, id: number) {
-    return this.http.put<any>(urlLocal + 'Soba/' + id, {
-      brojSobe: data.brojSobe,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Soba/' + id,
+      {
+        brojSobe: data.brojSobe,
+      },
+      { headers }
+    );
   }
   deleteSoba(id: number) {
-    return this.http.delete<any>(urlLocal + 'Soba/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Soba/' + id, { headers });
   }
   reserveRoom(brojSobe: string) {
-    return this.http.put<any>(urlLocal + 'Soba/reserve/' + brojSobe, {});
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Soba/reserve/' + brojSobe,
+      {},
+      { headers }
+    );
   }
   disableRoom(brojSobe: string) {
-    return this.http.put<any>(urlLocal + 'Soba/disable/' + brojSobe, {});
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Soba/disable/' + brojSobe,
+      {},
+      { headers }
+    );
   }
   freeRoom(brojSobe: string) {
-    return this.http.put<any>(urlLocal + 'Soba/free/' + brojSobe, {});
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Soba/free/' + brojSobe,
+      {},
+      { headers }
+    );
   }
 }

@@ -29,21 +29,51 @@ export class SesijeService {
     );
   }
   createSesija(data: any) {
-    return this.http.post<any>(urlLocal + 'Sesija', {
-      idSobe: data.idSobe,
-      idTerapije: data.idTerapije,
-      termin: data.termin,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post<any>(
+      urlLocal + 'Sesija',
+      {
+        idSobe: data.idSobe,
+        idTerapije: data.idTerapije,
+        termin: data.termin,
+      },
+      { headers }
+    );
   }
   deleteSesija(id: number) {
-    return this.http.delete<any>(urlLocal + 'Sesija/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Sesija/' + id, { headers });
   }
   deleteSesijaByTerapija(id: number) {
-    return this.http.delete<any>(urlLocal + 'Sesija/Terapije/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Sesija/Terapije/' + id, {
+      headers,
+    });
   }
   updateSesija(data: any, id: number) {
-    return this.http.put<any>(urlLocal + 'Sesija/' + id, {
-      termin: data.termin,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Sesija/' + id,
+      {
+        termin: data.termin,
+      },
+      { headers }
+    );
   }
 }

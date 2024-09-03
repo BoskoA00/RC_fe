@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     if (
       this.userService.loggedUser &&
       (this.userService.loggedUser.role == UserRole.Admin ||
-        this.userService.loggedUser.role == UserRole.Pacijent)
+        this.userService.loggedUser.role == UserRole.Terapeut)
     ) {
       return true;
     } else {

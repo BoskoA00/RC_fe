@@ -88,9 +88,29 @@ export class UserService {
     this.loggedIn = false;
   }
   promoteUser(id: number) {
-    return this.http.put<any>(urlLocal + 'users/promoteUser/' + id, {});
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'users/promoteUser/' + id,
+      {},
+      {
+        headers,
+      }
+    );
   }
   demoteUser(id: number) {
-    return this.http.put<any>(urlLocal + 'users/demoteUser/' + id, {});
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'users/demoteUser/' + id,
+      {},
+      { headers }
+    );
   }
 }

@@ -31,7 +31,6 @@ export class IzvestajComponent implements OnInit {
   loadIzvestaj() {
     this.izvesatajService.getIzvestajById(this.izvestajId).subscribe((data) => {
       this.izvestaj = data;
-      console.log(this.izvestaj);
     });
   }
 }

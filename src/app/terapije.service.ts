@@ -15,29 +15,54 @@ export class TerapijeService {
     return this.http.get<any>(urlLocal + 'Terapije/' + id);
   }
   createTerapija(terapija: any) {
-    return this.http.post<any>(urlLocal + 'Terapije', {
-      sifra: terapija.sifra,
-      idPacijenta: terapija.idPacijenta,
-      idDoktora: terapija.idDoktora,
-      datumPocetka: terapija.datumPocetka,
-      datumKraja: terapija.datumKraja,
-      brojSesija: terapija.brojSesija,
-      sadrzaj: terapija.sadrzaj,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post<any>(
+      urlLocal + 'Terapije',
+      {
+        sifra: terapija.sifra,
+        idPacijenta: terapija.idPacijenta,
+        idDoktora: terapija.idDoktora,
+        datumPocetka: terapija.datumPocetka,
+        datumKraja: terapija.datumKraja,
+        brojSesija: terapija.brojSesija,
+        sadrzaj: terapija.sadrzaj,
+      },
+      { headers }
+    );
   }
   updateTerapija(terapija: any) {
-    return this.http.put<any>(urlLocal + 'Terapije', {
-      id: terapija.id,
-      sifra: terapija.sifra,
-      datumPocetka: terapija.datumPocetka,
-      datumKraja: terapija.datumKraja,
-      sadrzaj: terapija.sadrzaj,
-      brojSesija: terapija.brojSesija,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Terapije',
+      {
+        id: terapija.id,
+        sifra: terapija.sifra,
+        datumPocetka: terapija.datumPocetka,
+        datumKraja: terapija.datumKraja,
+        sadrzaj: terapija.sadrzaj,
+        brojSesija: terapija.brojSesija,
+      },
+      {
+        headers,
+      }
+    );
   }
 
   deleteTerapija(id: number) {
-    return this.http.delete<any>(urlLocal + 'Terapije/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Terapije/' + id, { headers });
   }
   getTerapijaByCode(code: string) {
     return this.http.get<any>(urlLocal + 'Terapije/code/' + code);

@@ -27,33 +27,75 @@ export class IzvestajiService {
     );
   }
   createIzvestaj(data: any) {
-    return this.http.post<any>(urlLocal + 'Izvestaj', {
-      sadrzaj: data.sadrzaj,
-      sifra: data.sifra,
-      idPacijenta: data.idPacijenta,
-      idDoktora: data.idDoktora,
-      vremeStvaranja: data.vremeStvaranja,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post<any>(
+      urlLocal + 'Izvestaj',
+      {
+        sadrzaj: data.sadrzaj,
+        sifra: data.sifra,
+        idPacijenta: data.idPacijenta,
+        idDoktora: data.idDoktora,
+        vremeStvaranja: data.vremeStvaranja,
+      },
+      { headers }
+    );
   }
   deleteIzvestaj(id: number) {
-    return this.http.delete<any>(urlLocal + 'Izvestaj/' + id);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Izvestaj/' + id, { headers });
   }
   updateIzvestaj(id: number, sadrzaj: string) {
-    return this.http.put<any>(urlLocal + 'Izvestaj/' + id, {
-      sadrzaj: sadrzaj,
-    });
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.put<any>(
+      urlLocal + 'Izvestaj/' + id,
+      {
+        sadrzaj: sadrzaj,
+      },
+      { headers }
+    );
   }
   deleteIzvestajByCode(code: string) {
-    return this.http.delete<any>(urlLocal + 'Izvestaj/deleteByCode/' + code);
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete<any>(urlLocal + 'Izvestaj/deleteByCode/' + code, {
+      headers,
+    });
   }
   deleteIzvestajByDoktor(idDoktora: number) {
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     return this.http.delete<any>(
-      urlLocal + 'Izvestaj/deleteByDoktorId/' + idDoktora
+      urlLocal + 'Izvestaj/deleteByDoktorId/' + idDoktora,
+      { headers }
     );
   }
   deleteIzvestajByPacijent(idPacijenta: number) {
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     return this.http.delete<any>(
-      urlLocal + 'Izvestaj/deleteByPacijentId/' + idPacijenta
+      urlLocal + 'Izvestaj/deleteByPacijentId/' + idPacijenta,
+      { headers }
     );
   }
 }
