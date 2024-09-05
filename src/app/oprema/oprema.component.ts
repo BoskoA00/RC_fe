@@ -26,6 +26,7 @@ export class OpremaComponent implements OnInit {
   }
   loadOprema() {
     this.opremaService.getAll().subscribe((res) => {
+      console.log(res);
       this.oprema = res;
     });
   }

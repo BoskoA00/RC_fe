@@ -3,7 +3,6 @@ import { User } from 'src/Interfaces/User';
 import { UserService } from '../user.service';
 import { TerapijeService } from '../terapije.service';
 import { IzvestajiService } from '../izvestaji.service';
-import { Izvestaj } from 'src/Interfaces/Izvestaj';
 
 @Component({
   selector: 'app-profil',
@@ -17,11 +16,11 @@ export class ProfilComponent implements OnInit {
     id: 0,
     userName: '',
     password: '',
-    kontakt: '',
+    contact: '',
     firstName: '',
     lastName: '',
     role: 0,
-    datumRodjenja: '',
+    birthDate: '',
   };
   terapije: any[] = [];
   izvestaji: any[] = [];

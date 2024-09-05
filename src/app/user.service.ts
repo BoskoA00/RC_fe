@@ -15,7 +15,7 @@ export class UserService {
   }
 
   login(data: any) {
-    return this.http.post<any>(urlLocal + 'users/login', {
+    return this.http.post<User>(urlLocal + 'users/login', {
       userName: data.userName,
       password: data.password,
     });
@@ -29,7 +29,7 @@ export class UserService {
       lastName: data.lastName,
       role: '0',
       kontakt: data.kontakt,
-      datumRodjenja: data.datumRodjenja,
+      birthDate: data.birthDate,
     });
   }
 
@@ -49,7 +49,7 @@ export class UserService {
       password: data.password,
       role: data.role,
       kontakt: data.kontakt,
-      datumRodjenja: data.datumROdjenja,
+      birthDate: data.datumROdjenja,
     });
   }
 

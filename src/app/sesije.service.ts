@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Session } from 'src/Interfaces/Session';
 import { urlLocal } from 'src/environments/environment';
 
 @Injectable({
@@ -9,23 +10,29 @@ export class SesijeService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any>(urlLocal + 'Sesija');
+    return this.http.get<Session[]>(urlLocal + 'Session');
   }
   getSesijaById(id: number) {
-    return this.http.get<any>(urlLocal + 'Sesija/' + id);
+    return this.http.get<Session>(urlLocal + 'Session/' + id);
   }
   getSesijaByTerapijaId(id: number) {
-    return this.http.get<any[]>(urlLocal + 'Sesija/sesijeByTerapija/' + id);
+    return this.http.get<Session[]>(
+      urlLocal + 'Session/SessionsByTherapy/' + id
+    );
   }
   getSesijaByIdPacijenta(id: number) {
-    return this.http.get<any[]>(urlLocal + 'Sesija/sesijeByPacijentId/' + id);
+    return this.http.get<Session[]>(
+      urlLocal + 'Session/SessionsBtPatientId/' + id
+    );
   }
   getSesijaByIDDoktor(id: number) {
-    return this.http.get<any[]>(urlLocal + 'Sesija/sesijeByDoktorId/' + id);
+    return this.http.get<Session[]>(
+      urlLocal + 'Session/SessionsByDoctorId/' + id
+    );
   }
   getSesijaByTerapijaCode(code: string) {
-    return this.http.get<any[]>(
-      urlLocal + 'Sesija/sesijeByTerapijaCode/' + code
+    return this.http.get<Session[]>(
+      urlLocal + 'Session/SessionsByTherapyCode/' + code
     );
   }
   createSesija(data: any) {
@@ -34,12 +41,13 @@ export class SesijeService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
+
     return this.http.post<any>(
-      urlLocal + 'Sesija',
+      urlLocal + 'Session',
       {
-        idSobe: data.idSobe,
-        idTerapije: data.idTerapije,
-        termin: data.termin,
+        roomId: data.idSobe,
+        therapyId: data.idTerapije,
+        dateTime: data.termin,
       },
       { headers }
     );
@@ -50,7 +58,7 @@ export class SesijeService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return this.http.delete<any>(urlLocal + 'Sesija/' + id, { headers });
+    return this.http.delete<any>(urlLocal + 'Session/' + id, { headers });
   }
   deleteSesijaByTerapija(id: number) {
     const token = localStorage.getItem('token');
@@ -58,7 +66,7 @@ export class SesijeService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return this.http.delete<any>(urlLocal + 'Sesija/Terapije/' + id, {
+    return this.http.delete<any>(urlLocal + 'Session/Therapies/' + id, {
       headers,
     });
   }
@@ -69,9 +77,9 @@ export class SesijeService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.put<any>(
-      urlLocal + 'Sesija/' + id,
+      urlLocal + 'Session/' + id,
       {
-        termin: data.termin,
+        dateTime: data.termin,
       },
       { headers }
     );

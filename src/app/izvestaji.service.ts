@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { urlLocal } from 'src/environments/environment';
+import { Izvestaj } from 'src/Interfaces/Izvestaj';
 
 @Injectable({
   providedIn: 'root',
@@ -10,20 +11,20 @@ export class IzvestajiService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any[]>(urlLocal + 'Izvestaj');
+    return this.http.get<Izvestaj[]>(urlLocal + 'Report');
   }
   getIzvestajById(id: number) {
-    return this.http.get<any>(urlLocal + 'Izvestaj/' + id);
+    return this.http.get<Izvestaj>(urlLocal + 'Report/' + id);
   }
   getIzvestajByCode(code: string) {
-    return this.http.get<any>(urlLocal + 'Izvestaj/getByCode/' + code);
+    return this.http.get<Izvestaj>(urlLocal + 'Report/getByCode/' + code);
   }
   getIzvestajByDoktor(idDoktora: number) {
-    return this.http.get<any[]>(urlLocal + 'Izvestaj/byDoktor/' + idDoktora);
+    return this.http.get<Izvestaj[]>(urlLocal + 'Report/byDoctor/' + idDoktora);
   }
   getIzvestajByPacijent(idPacijenta: number) {
-    return this.http.get<any[]>(
-      urlLocal + 'Izvestaj/byPacijent/' + idPacijenta
+    return this.http.get<Izvestaj[]>(
+      urlLocal + 'Report/byPatient/' + idPacijenta
     );
   }
   createIzvestaj(data: any) {
@@ -33,13 +34,13 @@ export class IzvestajiService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.post<any>(
-      urlLocal + 'Izvestaj',
+      urlLocal + 'Report',
       {
-        sadrzaj: data.sadrzaj,
-        sifra: data.sifra,
-        idPacijenta: data.idPacijenta,
-        idDoktora: data.idDoktora,
-        vremeStvaranja: data.vremeStvaranja,
+        content: data.sadrzaj,
+        code: data.sifra,
+        patientId: data.idPacijenta,
+        doctorId: data.idDoktora,
+        creationTime: data.vremeStvaranja,
       },
       { headers }
     );
@@ -50,7 +51,7 @@ export class IzvestajiService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return this.http.delete<any>(urlLocal + 'Izvestaj/' + id, { headers });
+    return this.http.delete<any>(urlLocal + 'Report/' + id, { headers });
   }
   updateIzvestaj(id: number, sadrzaj: string) {
     const token = localStorage.getItem('token');
@@ -59,7 +60,7 @@ export class IzvestajiService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.put<any>(
-      urlLocal + 'Izvestaj/' + id,
+      urlLocal + 'Report/' + id,
       {
         sadrzaj: sadrzaj,
       },
@@ -72,7 +73,7 @@ export class IzvestajiService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return this.http.delete<any>(urlLocal + 'Izvestaj/deleteByCode/' + code, {
+    return this.http.delete<any>(urlLocal + 'Report/deleteByCode/' + code, {
       headers,
     });
   }
@@ -83,7 +84,7 @@ export class IzvestajiService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.delete<any>(
-      urlLocal + 'Izvestaj/deleteByDoktorId/' + idDoktora,
+      urlLocal + 'Report/deleteByDoctorId/' + idDoktora,
       { headers }
     );
   }
@@ -94,7 +95,7 @@ export class IzvestajiService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.delete<any>(
-      urlLocal + 'Izvestaj/deleteByPacijentId/' + idPacijenta,
+      urlLocal + 'Report/deleteByPatientId/' + idPacijenta,
       { headers }
     );
   }

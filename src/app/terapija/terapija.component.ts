@@ -33,6 +33,7 @@ export class TerapijaComponent implements OnInit {
   loadSesije() {
     this.sesijaService.getSesijaByTerapijaId(this.terapijaId).subscribe(
       (data) => {
+        console.log(data);
         this.sesije = data;
       },
       (err) => {

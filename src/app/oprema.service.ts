@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { urlLocal } from 'src/environments/environment';
+import { Oprema } from 'src/Interfaces/Oprema';
 
 @Injectable({
   providedIn: 'root',
@@ -9,16 +10,18 @@ export class OpremaService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any>(urlLocal + 'Oprema');
+    return this.http.get<Oprema[]>(urlLocal + 'Equipment');
   }
   getOpremaById(id: number) {
-    return this.http.get<any>(urlLocal + 'Oprema/' + id);
+    return this.http.get<Oprema>(urlLocal + 'Equipment/' + id);
   }
   getOpremaBySobaBr(brojSobe: string) {
-    return this.http.get<any>(urlLocal + 'Oprema/BySobaBr/' + brojSobe);
+    return this.http.get<Oprema>(
+      urlLocal + 'Equipment/ByRoomNumber/' + brojSobe
+    );
   }
   getOpremaBySobaId(id: number) {
-    return this.http.get<any>(urlLocal + 'Oprema/BySobaId/' + id);
+    return this.http.get<Oprema>(urlLocal + 'Equipment/ByRoomId/' + id);
   }
   createOprema(data: any) {
     const token = localStorage.getItem('token');
@@ -27,12 +30,12 @@ export class OpremaService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.post<any>(
-      urlLocal + 'Oprema',
+      urlLocal + 'Equipment',
       {
-        sifra: data.sifra,
-        naziv: data.naziv,
-        idSobe: data.idSobe,
-        poslednjeOdrzavanje: data.poslednjeOdrzavanje,
+        code: data.sifra,
+        name: data.naziv,
+        roomId: data.idSobe,
+        lastMaintenance: data.poslednjeOdrzavanje,
       },
       { headers }
     );
@@ -44,12 +47,12 @@ export class OpremaService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.put<any>(
-      urlLocal + 'Oprema/' + id,
+      urlLocal + 'Equipment/' + id,
       {
-        sifra: data.sifra,
-        naziv: data.naziv,
-        idSobe: data.idSobe,
-        poslednjeOdrzavanje: data.poslednjeOdrzavanje,
+        code: data.sifra,
+        name: data.naziv,
+        roomId: data.idSobe,
+        lastMaintenance: data.poslednjeOdrzavanje,
       },
       { headers }
     );
@@ -60,9 +63,9 @@ export class OpremaService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return this.http.delete<any>(urlLocal + 'Oprema/' + id, { headers });
+    return this.http.delete<any>(urlLocal + 'Equipment/' + id, { headers });
   }
   checkSifra(sifra: string) {
-    return this.http.get<boolean>(urlLocal + 'Oprema/sifraTaken/' + sifra);
+    return this.http.get<boolean>(urlLocal + 'Equipment/codeTaken/' + sifra);
   }
 }

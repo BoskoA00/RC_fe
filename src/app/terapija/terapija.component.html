@@ -2,7 +2,7 @@
   <div class="terapija-1">
     <div class="terapija-sadrzaj">
       <h6>
-        {{ terapija.sadrzaj }}
+        {{ terapija.content }}
       </h6>
       <a
         [routerLink]="['/editTerapija/', terapija.id]"
@@ -28,8 +28,8 @@
         <tbody>
           <tr *ngFor="let sesija of sesije; index as i">
             <td>{{ i + 1 }}. sesija</td>
-            <td>{{ sesija.termin }}h</td>
-            <td>{{ sesija.soba.brojSobe }}</td>
+            <td>{{ sesija.dateTime }}h</td>
+            <td>{{ sesija.room.roomNumber }}</td>
           </tr>
         </tbody>
       </table>

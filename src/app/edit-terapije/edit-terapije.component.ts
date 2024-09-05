@@ -59,11 +59,11 @@ export class EditTerapijeComponent implements OnInit {
 
   loadTerapija(): void {
     this.terapijaServ.getTerapijaById(this.terapijaId).subscribe((data) => {
-      this.terapijaSadrzaj = data.sadrzaj;
-      this.terapijaSifra = data.sifra;
-      this.terapijaDatumPocetka = data.datumPocetka;
-      this.terapijaDatumKraja = data.datumKraja;
-      this.pacijent = data.pacijent.firstName + ' ' + data.pacijent.lastName;
+      this.terapijaSadrzaj = data.content;
+      this.terapijaSifra = data.code;
+      this.terapijaDatumPocetka = data.startDate;
+      this.terapijaDatumKraja = data.endDate;
+      this.pacijent = data.patient.firstName + ' ' + data.patient.lastName;
     });
   }
 
@@ -147,15 +147,31 @@ export class EditTerapijeComponent implements OnInit {
       this.terapijaServ
         .updateTerapija({
           id: this.terapijaId,
-          sifra: this.terapijaSifra,
-          datumPocetka: this.terapijaDatumPocetka,
-          datumKraja: this.terapijaDatumKraja,
-          sadrzaj: this.terapijaSadrzaj,
-          brojSesija: this.brojSesija,
+          code: this.terapijaSifra,
+          startDate: this.terapijaDatumPocetka,
+          endDate: this.terapijaDatumKraja,
+          content: this.terapijaSadrzaj,
+          sessionsNumber: this.brojSesija,
         })
         .subscribe(
           (data) => {
             if (this.noveSesije.length <= 0) {
+              this.router.navigate(['terapije']);
+            } else {
+              this.noveSesije.forEach((ns) => {
+                this.sesijeServ
+                  .createSesija({
+                    idSobe: ns.idSobe,
+                    idTerapije: ns.idTerapije,
+                    termin: ns.termin,
+                  })
+                  .subscribe(
+                    (data) => {},
+                    (err) => {
+                      console.log(err);
+                    }
+                  );
+              });
               this.router.navigate(['terapije']);
             }
           },
@@ -164,22 +180,7 @@ export class EditTerapijeComponent implements OnInit {
             return;
           }
         );
-      this.noveSesije.forEach((ns) => {
-        this.sesijeServ
-          .createSesija({
-            idSobe: ns.idSobe,
-            idTerapije: ns.idTerapije,
-            termin: ns.termin,
-          })
-          .subscribe(
-            (data) => {},
-            (err) => {
-              console.log(err);
-            }
-          );
-      });
     }
-    this.router.navigate(['terapije']);
   }
 
   deleteSesija(id: number): void {
@@ -189,20 +190,20 @@ export class EditTerapijeComponent implements OnInit {
       this.brojSesija = this.brojSesija - 1;
 
       t.id = this.terapijaId;
-      t.sifra = data.sifra;
-      t.datumPocetka = data.datumPocetka;
-      t.datumKraja = data.datumKraja;
-      t.sadrzaj = data.sadrzaj;
+      t.sifra = data.code;
+      t.datumPocetka = data.startDate;
+      t.datumKraja = data.endDate;
+      t.sadrzaj = data.content;
       t.brojSesija = this.brojSesija;
 
       this.terapijaServ
         .updateTerapija({
           id: t.id,
-          sifra: t.sifra,
-          datumPocetka: t.datumPocetka,
-          datumKraja: t.datumKraja,
-          sadrzaj: t.sadrzaj,
-          brojSesija: t.brojSesija,
+          code: t.sifra,
+          startDate: t.datumPocetka,
+          endDate: t.datumKraja,
+          content: t.sadrzaj,
+          sessionsNumber: t.brojSesija,
         })
         .subscribe(
           (response) => {},

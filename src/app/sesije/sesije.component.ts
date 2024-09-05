@@ -69,11 +69,11 @@ export class SesijeComponent implements OnInit {
       .getTerapijaById(sesija.idTerapije)
       .subscribe((data) => {
         t.id = sesija.idTerapije;
-        t.sifra = data.sifra;
-        t.datumPocetka = data.datumPocetka;
-        t.datumKraja = data.datumKraja;
-        t.sadrzaj = data.sadrzaj;
-        t.brojSesija = data.brojSesija;
+        t.sifra = data.code;
+        t.datumPocetka = data.startDate;
+        t.datumKraja = data.endDate;
+        t.sadrzaj = data.content;
+        t.brojSesija = data.sessionsNumber;
         t.brojSesija = t.brojSesija - 1;
         this.terapijaService
           .updateTerapija({

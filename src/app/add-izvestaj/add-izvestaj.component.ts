@@ -103,7 +103,9 @@ export class AddIzvestajComponent implements OnInit {
         (d) => {
           this.router.navigate(['izvestaji']);
         },
-        (err) => {}
+        (err) => {
+          console.log(err);
+        }
       );
     }
   }

@@ -35,18 +35,17 @@ export class EditOpremaComponent implements OnInit {
 
   loadOprema() {
     this.opremaService.getOpremaById(this.opremaId).subscribe((data) => {
-      this.opremaSifra = data.sifra;
-      this.opremaNaziv = data.naziv;
-      this.brojSobe = data.soba.brojSobe;
-      this.datumPO = this.formatDateForInput(data.poslednjeOdrzavanje);
-      this.datumPoslednjegOdrzavanja = data.poslednjeOdrzavanje;
-      this.oldSifra = data.sifra;
-      this.sobaId = data.soba.id;
+      this.opremaSifra = data.code;
+      this.opremaNaziv = data.name;
+      this.brojSobe = data.room.roomNumber;
+      this.datumPO = this.formatDateForInput(data.lastMaintenance);
+      this.datumPoslednjegOdrzavanja = data.lastMaintenance;
+      this.oldSifra = data.code;
+      this.sobaId = data.room.id;
     });
   }
 
   formatDateForInput(date: string): string {
-    console.log(date);
     const [day, month, year] = date.split('-');
     return `${year}-${month}-${day}`;
   }
@@ -61,8 +60,7 @@ export class EditOpremaComponent implements OnInit {
     this.sobaCheck = false;
     this.sobaService.getSobaByBrojSobe(this.brojSobe).subscribe(
       (data) => {
-        console.log(data);
-        if (data === null || data.oprema.id === this.opremaId) {
+        if (data === null || data.equipment.id === this.opremaId) {
           this.sobaCheck = false;
           this.sobaId = data.id;
         } else if (data != null) {

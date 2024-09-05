@@ -13,10 +13,10 @@
         <h4>{{ korisnik.role | role }}</h4>
       </div>
       <div>
-        <h4>{{ korisnik.datumRodjenja }}</h4>
+        <h4>{{ korisnik.birthDate }}</h4>
       </div>
       <div>
-        <h4>{{ korisnik.kontakt }}</h4>
+        <h4>{{ korisnik.contact }}</h4>
       </div>
     </div>
   </div>
@@ -67,10 +67,10 @@
                   routerLinkActive="router-link-active"
                 >
                   <span *ngIf="korisnik.role == 0"
-                    >{{ i.doktor.firstName }} {{ i.doktor.lastName }}</span
+                    >{{ i.doctor.firstName }} {{ i.doctor.lastName }}</span
                   >
                   <span *ngIf="korisnik.role == 1"
-                    >{{ i.pacijent.firstName }} {{ i.pacijent.lastName }}</span
+                    >{{ i.patient.firstName }} {{ i.patient.lastName }}</span
                   >
                 </a>
               </td>
@@ -78,28 +78,28 @@
                 <a
                   [routerLink]="['/terapija', i.id]"
                   routerLinkActive="router-link-active"
-                  >{{ i.sadrzaj | izvestaj }}</a
+                  >{{ i.content | izvestaj }}</a
                 >
               </td>
               <td>
                 <a
                   [routerLink]="['/terapija', i.id]"
                   routerLinkActive="router-link-active"
-                  >{{ i.datumPocetka }}</a
+                  >{{ i.startDate }}</a
                 >
               </td>
               <td>
                 <a
                   [routerLink]="['/terapija', i.id]"
                   routerLinkActive="router-link-active"
-                  >{{ i.datumKraja }}</a
+                  >{{ i.endDate }}</a
                 >
               </td>
               <td>
                 <a
                   [routerLink]="['/terapija', i.id]"
                   routerLinkActive="router-link-active"
-                  >{{ i.brojSesija }}</a
+                  >{{ i.sessionsNumber }}</a
                 >
               </td>
             </tr>
@@ -147,22 +147,22 @@
               <tr *ngFor="let izvestaj of izvestaji">
                 <td>
                   <span *ngIf="korisnik.role == 0"
-                    >{{ izvestaj.doktor.firstName }}
-                    {{ izvestaj.doktor.lastName }}</span
+                    >{{ izvestaj.doctor.firstName }}
+                    {{ izvestaj.doctor.lastName }}</span
                   >
                   <span *ngIf="korisnik.role == 1"
-                    >{{ izvestaj.pacijent.firstName }}
-                    {{ izvestaj.pacijent.lastName }}</span
+                    >{{ izvestaj.patient.firstName }}
+                    {{ izvestaj.patient.lastName }}</span
                   >
                 </td>
                 <td>
                   <a
                     [routerLink]="['/izvestaj', izvestaj.id]"
                     routerLinkActive="router-link-active"
-                    >{{ izvestaj.sadrzaj | izvestaj }}</a
+                    >{{ izvestaj.content | izvestaj }}</a
                   >
                 </td>
-                <td>{{ izvestaj.vremeStvaranja }}</td>
+                <td>{{ izvestaj.creationTime }}</td>
               </tr>
             </tbody>
           </table>

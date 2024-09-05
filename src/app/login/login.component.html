@@ -148,31 +148,31 @@
             class="form-control"
             placeholder="Broj telefona i/ili email adresa"
             aria-describedby="helpId"
-            [(ngModel)]="kontakt"
+            [(ngModel)]="contact"
             formControlName="formKontakt"
           />
           <small
             id="helpId"
             *ngIf="
-              RegisterKontakt.invalid &&
-              RegisterKontakt.errors?.required &&
-              RegisterKontakt.touched
+              RegisterContact.invalid &&
+              RegisterContact.errors?.required &&
+              RegisterContact.touched
             "
             class="text-muted"
             >Kontakt je obavezan</small
           >
         </div>
         <div class="form-group">
-          <label for="datumRodjenja">Datum rodjenja:</label>
+          <label for="birthDate">Datum rodjenja:</label>
           <input
             type="date"
-            name="datumRodjenja"
-            id="datumRodjenja"
+            name="birthDate"
+            id="birthDate"
             class="form-control"
             aria-describedby="helpId"
             [max]="maksimalanDatum"
-            [(ngModel)]="datumRodjenja"
-            formControlName="datumRodjenja"
+            [(ngModel)]="birthDate"
+            formControlName="birthDate"
           />
           <small
             id="helpId"

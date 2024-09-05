@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Terapija } from 'src/Interfaces/Terapija';
 import { urlLocal } from 'src/environments/environment';
+import { Therapy } from 'src/Interfaces/Therapy';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,10 +9,10 @@ export class TerapijeService {
   constructor(private http: HttpClient) {}
 
   getAllTerapije() {
-    return this.http.get<any[]>(urlLocal + 'Terapije');
+    return this.http.get<Therapy[]>(urlLocal + 'Therapy');
   }
   getTerapijaById(id: number) {
-    return this.http.get<any>(urlLocal + 'Terapije/' + id);
+    return this.http.get<Therapy>(urlLocal + 'Therapy/' + id);
   }
   createTerapija(terapija: any) {
     const token = localStorage.getItem('token');
@@ -21,15 +21,15 @@ export class TerapijeService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.post<any>(
-      urlLocal + 'Terapije',
+      urlLocal + 'Therapy',
       {
-        sifra: terapija.sifra,
-        idPacijenta: terapija.idPacijenta,
-        idDoktora: terapija.idDoktora,
-        datumPocetka: terapija.datumPocetka,
-        datumKraja: terapija.datumKraja,
-        brojSesija: terapija.brojSesija,
-        sadrzaj: terapija.sadrzaj,
+        code: terapija.sifra,
+        patientId: terapija.idPacijenta,
+        doctorId: terapija.idDoktora,
+        startDate: terapija.datumPocetka,
+        endDate: terapija.datumKraja,
+        sessionsNumber: terapija.brojSesija,
+        content: terapija.sadrzaj,
       },
       { headers }
     );
@@ -41,14 +41,14 @@ export class TerapijeService {
       Authorization: `Bearer ${token}`,
     };
     return this.http.put<any>(
-      urlLocal + 'Terapije',
+      urlLocal + 'Therapy',
       {
         id: terapija.id,
-        sifra: terapija.sifra,
-        datumPocetka: terapija.datumPocetka,
-        datumKraja: terapija.datumKraja,
-        sadrzaj: terapija.sadrzaj,
-        brojSesija: terapija.brojSesija,
+        code: terapija.code,
+        startDate: terapija.startDate,
+        endDate: terapija.endDate,
+        content: terapija.content,
+        sessionsNumber: terapija.sessionsNumber,
       },
       {
         headers,
@@ -62,18 +62,18 @@ export class TerapijeService {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    return this.http.delete<any>(urlLocal + 'Terapije/' + id, { headers });
+    return this.http.delete<any>(urlLocal + 'Therapy/' + id, { headers });
   }
   getTerapijaByCode(code: string) {
-    return this.http.get<any>(urlLocal + 'Terapije/code/' + code);
+    return this.http.get<any>(urlLocal + 'Therapy/code/' + code);
   }
   deleteTerapijaByCode(code: string) {
-    return this.http.delete<any>(urlLocal + 'Terapije/code/' + code);
+    return this.http.delete<any>(urlLocal + 'Therapy/code/' + code);
   }
   getTerapijeByPacijent(id: number) {
-    return this.http.get<any[]>(urlLocal + 'Terapije/pacijent/' + id);
+    return this.http.get<any[]>(urlLocal + 'Therapy/patient/' + id);
   }
   getTerapijeByDoktor(id: number) {
-    return this.http.get<any[]>(urlLocal + 'Terapije/doktor/' + id);
+    return this.http.get<any[]>(urlLocal + 'Therapy/doctor/' + id);
   }
 }

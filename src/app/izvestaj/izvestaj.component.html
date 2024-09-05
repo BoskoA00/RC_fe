@@ -2,25 +2,25 @@
   <div class="izvestaj-data">
     <div class="izvestaj-doktor">
       <h4 *ngIf="role == 0">
-        Izvestaj je napisao doktor {{ izvestaj.doktor.firstName }}
-        {{ izvestaj.doktor.lastName }} datuma
-        {{ izvestaj.vremeStvaranja }} godine.
+        Izvestaj je napisao doktor {{ izvestaj.doctor.firstName }}
+        {{ izvestaj.doctor.lastName }} datuma
+        {{ izvestaj.creationTime }} godine.
       </h4>
       <h4 *ngIf="role == 1">
-        Izvestaj je vezan za pacijenta {{ izvestaj.pacijent.firstName }}
-        {{ izvestaj.pacijent.lastName }} datuma
-        {{ izvestaj.vremeStvaranja }} godine.
+        Izvestaj je vezan za pacijenta {{ izvestaj.patient.firstName }}
+        {{ izvestaj.patient.lastName }} datuma
+        {{ izvestaj.creationTime }} godine.
       </h4>
       <h4 *ngIf="role == 2">
-        Izvestaj je vezan za pacijenta {{ izvestaj.pacijent.firstName }}
-        {{ izvestaj.pacijent.lastName }} datuma {{ izvestaj.vremeStvaranja }}.
-        godine. Napisan od strane {{ izvestaj.doktor.firstName }}
-        {{ izvestaj.doktor.lastName }}
+        Izvestaj je vezan za pacijenta {{ izvestaj.patient.firstName }}
+        {{ izvestaj.patient.lastName }} datuma {{ izvestaj.creationTime }}.
+        godine. Napisan od strane {{ izvestaj.doctor.firstName }}
+        {{ izvestaj.doctor.lastName }}
       </h4>
     </div>
     <div class="izvestaj-sadrzaj">
       <h6>
-        {{ izvestaj.sadrzaj }}
+        {{ izvestaj.content }}
       </h6>
     </div>
     <div>

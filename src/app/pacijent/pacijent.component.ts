@@ -16,8 +16,8 @@ export class PacijentComponent implements OnInit {
     userName: '',
     password: '',
     role: 0,
-    kontakt: '',
-    datumRodjenja: '',
+    contact: '',
+    birthDate: '',
   };
   pacijentId: number = 0;
   role = 0;

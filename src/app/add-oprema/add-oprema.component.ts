@@ -110,15 +110,6 @@ export class AddOpremaComponent implements OnInit {
       this.opremaService.checkSifra(this.sifra).subscribe(
         (data) => {
           this.proveraSifre = data;
-          console.log(data);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-      this.opremaService.getOpremaBySobaBr(this.sifra).subscribe(
-        (data) => {
-          console.log(data);
         },
         (err) => {
           console.log(err);
@@ -134,15 +125,15 @@ export class AddOpremaComponent implements OnInit {
     if (this.brojSobe.trim().length > 0) {
       this.sobaService.getSobaByBrojSobe(this.brojSobe).subscribe(
         (data) => {
-          if (data == null) {
-            this.proveraSobe = true;
+          if (data.equipment == null) {
+            this.proveraSobe = false;
+            this.idSobe = data.id;
             return;
           } else {
-            if (data.oprema != null) {
+            if (data.equipment != null) {
               this.proveraZauzetostiSobe = true;
               return;
             }
-            this.idSobe = data.id;
           }
         },
         (err) => {

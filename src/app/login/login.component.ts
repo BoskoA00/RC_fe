@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
   error: string = '';
   confirmPassword: string = '';
   confirmPasswordError: boolean = false;
-  datumRodjenja: string = '';
-  kontakt: string = '';
+  birthDate: string = '';
+  contact: string = '';
   ime: string = '';
   prezime: string = '';
   userDoesntExist: boolean = false;
@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
       Validators.minLength(6),
     ]),
     confirmPassword: new FormControl('', Validators.required),
-    datumRodjenja: new FormControl('', [Validators.required]),
-    formKontakt: new FormControl('', [Validators.required]),
+    birthDate: new FormControl('', [Validators.required]),
+    formcontact: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
   });
@@ -69,14 +69,14 @@ export class LoginComponent implements OnInit {
   get RegisterPrezime() {
     return (this.loginForm.get('lastName') as FormControl) ?? new FormControl();
   }
-  get RegisterKontakt() {
+  get RegisterContact() {
     return (
-      (this.loginForm.get('formKontakt') as FormControl) ?? new FormControl()
+      (this.loginForm.get('formcontact') as FormControl) ?? new FormControl()
     );
   }
   get RegisterDatum() {
     return (
-      (this.loginForm.get('datumRodjenja') as FormControl) ?? new FormControl()
+      (this.loginForm.get('birthDate') as FormControl) ?? new FormControl()
     );
   }
   confirmPasswordChange() {
@@ -129,7 +129,7 @@ export class LoginComponent implements OnInit {
   }
 
   registerUser() {
-    const dateParts = this.datumRodjenja.split('-');
+    const dateParts = this.birthDate.split('-');
     const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
 
     let data = {
@@ -137,8 +137,8 @@ export class LoginComponent implements OnInit {
       password: this.password.trim(),
       firstName: this.ime.trim(),
       lastName: this.prezime.trim(),
-      kontakt: this.kontakt.trim(),
-      datumRodjenja: formattedDate,
+      contact: this.contact.trim(),
+      birthDate: formattedDate,
     };
 
     if (this.loginForm.invalid || this.confirmPasswordError) {

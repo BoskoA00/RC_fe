@@ -29,10 +29,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let opr of searching ? filteredOprema : oprema">
-            <td>{{ opr.sifra }}</td>
-            <td>{{ opr.naziv }}</td>
-            <td>{{ opr.poslednjeOdrzavanje }}</td>
-            <td>{{ opr.soba.brojSobe }}</td>
+            <td>{{ opr.code }}</td>
+            <td>{{ opr.name }}</td>
+            <td>{{ opr.lastMaintenance }}</td>
+            <td>{{ opr.room.roomNumber }}</td>
             <td *ngIf="role == 2" class="oprema-options">
               <button class="btn btn-primary" (click)="deleteOprema(opr.id)">
                 Izbrisi opremu

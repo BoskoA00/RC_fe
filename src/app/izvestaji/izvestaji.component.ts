@@ -57,6 +57,7 @@ export class IzvestajiComponent implements OnInit {
     ) {
       this.izvestajiService.getAll().subscribe(
         (data) => {
+          console.log(data);
           this.izvestaji = data;
         },
         (err) => {
@@ -81,7 +82,7 @@ export class IzvestajiComponent implements OnInit {
     if (this.searchTerm.trim().length > 0) {
       this.searching = true;
       this.filteredIzvestaji = this.izvestaji.filter((izvestaj) =>
-        izvestaj.sifra.toLowerCase().includes(this.searchTerm.toLowerCase())
+        izvestaj.code.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else {
       this.searching = false;
